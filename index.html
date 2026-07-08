@@ -100,8 +100,13 @@
               <div class="ray ray-3"></div>
             </div>
 
-            <!-- Stylized Page-Spanning Raster Tree Image -->
-            <img src="tree.png" alt="Aesthetic Forest Tree" class="aesthetic-tree-image">
+            <!-- Profile Frame with Branch background & Circular headshot -->
+            <div class="profile-hero-frame">
+              <img src="branch.png" alt="Leafy Branch" class="profile-branch-bg">
+              <div class="profile-avatar-circle">
+                <img src="profile.jpg" alt="Arshal Saifi" class="profile-avatar-img">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,7 +124,15 @@
         <div class="section-header">
           <span class="subheading">the seed of passion</span>
           <h2 class="section-title">Profile Summary</h2>
-          <span class="floral-divider">🍃 🍃 &nbsp;🌿&nbsp; 🍃 🍃</span>
+          <div class="branch-divider">
+            <svg viewBox="0 0 120 12" class="section-branch-svg">
+              <path d="M10,6 Q35,3 60,6 T110,6" fill="gray" stroke="var(--accent)" stroke-width="1.2"
+                stroke-linecap="round" />
+              <path d="M35,5 C33,2 38,1 40,4 C42,2 45,3 43,6 C41,7 37,7 35,5 Z" fill="var(--accent-secondary)" />
+              <path d="M60,6 C58,3 63,2 65,5 C67,3 70,4 68,7 C66,8 62,8 60,6 Z" fill="var(--accent)" />
+              <path d="M85,5 C83,2 88,1 90,4 C92,2 95,3 93,6 C91,7 87,7 85,5 Z" fill="var(--accent-secondary)" />
+            </svg>
+          </div>
         </div>
 
         <div class="about-card glass double-border">
@@ -172,7 +185,15 @@
         <div class="section-header">
           <span class="subheading">Nurturing Experience</span>
           <h2 class="section-title">Internship</h2>
-          <span class="floral-divider">🍃 🍃 &nbsp;🌿&nbsp; 🍃 🍃</span>
+          <div class="branch-divider">
+            <svg viewBox="0 0 120 12" class="section-branch-svg">
+              <path d="M10,6 Q35,3 60,6 T110,6" fill="gray" stroke="var(--accent)" stroke-width="1.2"
+                stroke-linecap="round" />
+              <path d="M35,5 C33,2 38,1 40,4 C42,2 45,3 43,6 C41,7 37,7 35,5 Z" fill="var(--accent-secondary)" />
+              <path d="M60,6 C58,3 63,2 65,5 C67,3 70,4 68,7 C66,8 62,8 60,6 Z" fill="var(--accent)" />
+              <path d="M85,5 C83,2 88,1 90,4 C92,2 95,3 93,6 C91,7 87,7 85,5 Z" fill="var(--accent-secondary)" />
+            </svg>
+          </div>
         </div>
 
         <div class="experience-showcase glass double-border scroll-reveal">
@@ -227,7 +248,15 @@
         <div class="section-header">
           <span class="subheading">Blossoms of creation</span>
           <h2 class="section-title">Featured Projects</h2>
-          <span class="floral-divider">🍃 🍃 &nbsp;🌿&nbsp; 🍃 🍃</span>
+          <div class="branch-divider">
+            <svg viewBox="0 0 120 12" class="section-branch-svg">
+              <path d="M10,6 Q35,3 60,6 T110,6" fill="gray" stroke="var(--accent)" stroke-width="1.2"
+                stroke-linecap="round" />
+              <path d="M35,5 C33,2 38,1 40,4 C42,2 45,3 43,6 C41,7 37,7 35,5 Z" fill="var(--accent-secondary)" />
+              <path d="M60,6 C58,3 63,2 65,5 C67,3 70,4 68,7 C66,8 62,8 60,6 Z" fill="var(--accent)" />
+              <path d="M85,5 C83,2 88,1 90,4 C92,2 95,3 93,6 C91,7 87,7 85,5 Z" fill="var(--accent-secondary)" />
+            </svg>
+          </div>
         </div>
 
         <div class="projects-grid">
@@ -236,11 +265,13 @@
             <div class="card-glow"></div>
             <div class="project-header">
               <div class="folder-icon">
-                <i class="fa-solid fa-eye-slash-solid fa-magnifying-glass-chart"></i>
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
               </div>
               <div class="project-links">
-                <span class="link-placeholder" title="Working links loaded later"><i class="fa-solid fa-link-slash"></i>
-                  Links Later</span>
+                <a href="https://github.com/MeowMan007/Accesslens" target="_blank" rel="noopener noreferrer"
+                  class="project-link-icon" title="View Source on GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
               </div>
             </div>
             <div class="project-info">
@@ -263,7 +294,7 @@
             </div>
           </div>
 
-          <!-- Project 2: DentDost -->
+          <!-- Project 2: Dental Booking Assistant -->
           <div class="project-card glass double-border scroll-reveal">
             <div class="card-glow"></div>
             <div class="project-header">
@@ -271,13 +302,15 @@
                 <i class="fa-solid fa-calendar-check"></i>
               </div>
               <div class="project-links">
-                <span class="link-placeholder" title="Working links loaded later"><i class="fa-solid fa-link-slash"></i>
-                  Links Later</span>
+                <a href="https://github.com/MeowMan007/dental-booking-made-with-pydantic-ai" target="_blank"
+                  rel="noopener noreferrer" class="project-link-icon" title="View Source on GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
               </div>
             </div>
             <div class="project-info">
-              <h3>DentDost</h3>
-              <p class="project-subtitle">AI Scheduling Agent</p>
+              <h3>Dental Booking Agent</h3>
+              <p class="project-subtitle">AI Scheduling Agent via Pydantic AI</p>
               <p class="description">
                 An intelligent scheduling software using React + Vite on the client side with a real-time conversational
                 booking UI and custom hooks, streaming backend responses over REST. Orchestrated with a PydanticAI
@@ -302,8 +335,10 @@
                 <i class="fa-solid fa-file-invoice"></i>
               </div>
               <div class="project-links">
-                <span class="link-placeholder" title="Working links loaded later"><i class="fa-solid fa-link-slash"></i>
-                  Links Later</span>
+                <a href="https://github.com/MeowMan007/Ai-resume-analyser" target="_blank" rel="noopener noreferrer"
+                  class="project-link-icon" title="View Source on GitHub">
+                  <i class="fa-brands fa-github"></i>
+                </a>
               </div>
             </div>
             <div class="project-info">
@@ -324,6 +359,12 @@
             </div>
           </div>
         </div>
+        <span class="tag">LangChain</span>
+        <span class="tag">Ollama</span>
+        <span class="tag">Local LLM</span>
+      </div>
+      </div>
+      </div>
       </div>
     </section>
 
@@ -333,7 +374,15 @@
         <div class="section-header">
           <span class="subheading">Garden of Competence</span>
           <h2 class="section-title">Skills & Toolkit</h2>
-          <span class="floral-divider">🍃 🍃 &nbsp;🌿&nbsp; 🍃 🍃</span>
+          <div class="branch-divider">
+            <svg viewBox="0 0 120 12" class="section-branch-svg">
+              <path d="M10,6 Q35,3 60,6 T110,6" fill="gray" stroke="var(--accent)" stroke-width="1.2"
+                stroke-linecap="round" />
+              <path d="M35,5 C33,2 38,1 40,4 C42,2 45,3 43,6 C41,7 37,7 35,5 Z" fill="var(--accent-secondary)" />
+              <path d="M60,6 C58,3 63,2 65,5 C67,3 70,4 68,7 C66,8 62,8 60,6 Z" fill="var(--accent)" />
+              <path d="M85,5 C83,2 88,1 90,4 C92,2 95,3 93,6 C91,7 87,7 85,5 Z" fill="var(--accent-secondary)" />
+            </svg>
+          </div>
         </div>
 
         <div class="skills-container">
@@ -509,7 +558,15 @@
         <div class="section-header">
           <span class="subheading">Seeds that grew</span>
           <h2 class="section-title">Achievements & Certifications</h2>
-          <span class="floral-divider">🍃 🍃 &nbsp;🌿&nbsp; 🍃 🍃</span>
+          <div class="branch-divider">
+            <svg viewBox="0 0 120 12" class="section-branch-svg">
+              <path d="M10,6 Q35,3 60,6 T110,6" fill="gray" stroke="var(--accent)" stroke-width="1.2"
+                stroke-linecap="round" />
+              <path d="M35,5 C33,2 38,1 40,4 C42,2 45,3 43,6 C41,7 37,7 35,5 Z" fill="var(--accent-secondary)" />
+              <path d="M60,6 C58,3 63,2 65,5 C67,3 70,4 68,7 C66,8 62,8 60,6 Z" fill="var(--accent)" />
+              <path d="M85,5 C83,2 88,1 90,4 C92,2 95,3 93,6 C91,7 87,7 85,5 Z" fill="var(--accent-secondary)" />
+            </svg>
+          </div>
         </div>
 
         <div class="achievements-grid">
@@ -544,7 +601,15 @@
         <div class="section-header">
           <span class="subheading">Reach Out</span>
           <h2 class="section-title">Get In Touch</h2>
-          <span class="floral-divider">🍃 🍃 &nbsp;🌿&nbsp; 🍃 🍃</span>
+          <div class="branch-divider">
+            <svg viewBox="0 0 120 12" class="section-branch-svg">
+              <path d="M10,6 Q35,3 60,6 T110,6" fill="gray" stroke="var(--accent)" stroke-width="1.2"
+                stroke-linecap="round" />
+              <path d="M35,5 C33,2 38,1 40,4 C42,2 45,3 43,6 C41,7 37,7 35,5 Z" fill="var(--accent-secondary)" />
+              <path d="M60,6 C58,3 63,2 65,5 C67,3 70,4 68,7 C66,8 62,8 60,6 Z" fill="var(--accent)" />
+              <path d="M85,5 C83,2 88,1 90,4 C92,2 95,3 93,6 C91,7 87,7 85,5 Z" fill="var(--accent-secondary)" />
+            </svg>
+          </div>
         </div>
 
         <div class="contact-grid">
@@ -592,7 +657,7 @@
           <!-- Contact Form Card -->
           <div class="contact-form-wrapper glass double-border scroll-reveal">
             <h3>Send Message</h3>
-            <form id="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+            <form id="contact-form">
               <div class="form-group">
                 <input type="text" id="name" required placeholder=" " class="form-input">
                 <label for="name" class="form-label">Full Name</label>

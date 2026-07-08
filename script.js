@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initLeafCanvas();
   initPollenTrail();
   initAutomaticWind();
+  initContactForm();
 });
 
 /* --- Navbar Interactivity --- */
@@ -59,17 +60,17 @@ function triggerWindGust(dir) {
   isGusting = true;
 
   const windBtn = document.getElementById('wind-gust-btn');
-  const treeContainer = document.querySelector('.aesthetic-tree-container');
+  const branchBg = document.querySelector('.profile-branch-bg');
 
   if (windBtn) windBtn.classList.add('active');
 
-  if (treeContainer) {
+  if (branchBg) {
     if (dir > 0) {
-      treeContainer.classList.add('windy-right');
-      treeContainer.classList.remove('windy-left');
+      branchBg.classList.add('wind-active-right');
+      branchBg.classList.remove('wind-active-left');
     } else {
-      treeContainer.classList.add('windy-left');
-      treeContainer.classList.remove('windy-right');
+      branchBg.classList.add('wind-active-left');
+      branchBg.classList.remove('wind-active-right');
     }
   }
 
@@ -82,8 +83,8 @@ function triggerWindGust(dir) {
     setTimeout(() => {
       isGusting = false;
       if (windBtn) windBtn.classList.remove('active');
-      if (treeContainer) {
-        treeContainer.classList.remove('windy-right', 'windy-left');
+      if (branchBg) {
+        branchBg.classList.remove('wind-active-right', 'wind-active-left');
       }
     }, 2800);
   }, 2200);
@@ -375,4 +376,33 @@ function initPollenTrail() {
   }
 
   animate();
+}
+
+/* --- Client Contact Form AJAX Transition Handler --- */
+function initContactForm() {
+  const contactForm = document.getElementById('contact-form');
+  if (!contactForm) return;
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = contactForm.querySelector('.btn-submit');
+    if (!btn) return;
+    btn.innerHTML = '<span>Sending Breeze...</span><i class="fa-solid fa-spinner fa-spin"></i>';
+    btn.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+      const wrapper = contactForm.parentElement;
+      if (!wrapper) return;
+      wrapper.innerHTML = `
+        <div class="success-message-bloom" style="animation: zoomIn 0.5s ease-out forwards;">
+          <div class="success-icon">🍃</div>
+          <h3>Breeze Carried Away!</h3>
+          <p>
+            Your message has been caught by the wind and delivered to Arshal's canopy. Bloom together soon!
+          </p>
+          <button class="btn btn-secondary" onclick="window.location.reload();">Send Another Message</button>
+        </div>
+      `;
+    }, 1500);
+  });
 }
