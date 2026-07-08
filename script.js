@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initSeasonScrollSpy();
   initScrollWindBoost();
+  initNightMode();
 });
 
 /* --- Navbar Interactivity --- */
@@ -222,12 +223,17 @@ function initLeafCanvas() {
       // Smoothly approach target wind speed
       currentWind += (targetWind - currentWind) * 0.035;
 
-      this.y += this.speedY;
-      this.swayOffset += this.swaySpeed;
-
-      // Calculate gust offset
-      const gustEffect = (Math.abs(currentWind) > 1) ? (currentWind * (0.8 + Math.random() * 0.4)) : currentWind;
-      this.x += this.speedX + Math.sin(this.swayOffset) * 0.4 + gustEffect;
+      if (document.body.classList.contains('season-winter')) {
+        // Snow physics: falls vertically faster, drifts slightly with wind, less sway
+        this.y += this.speedY * 2.2;
+        this.x += this.speedX * 0.5 + Math.sin(this.swayOffset) * 0.2 + (currentWind * 0.4);
+      } else {
+        // Leaf physics
+        this.y += this.speedY;
+        this.swayOffset += this.swaySpeed;
+        const gustEffect = (Math.abs(currentWind) > 1) ? (currentWind * (0.8 + Math.random() * 0.4)) : currentWind;
+        this.x += this.speedX + Math.sin(this.swayOffset) * 0.4 + gustEffect;
+      }
 
       if (Math.abs(currentWind) > 1.5) {
         this.angle += this.spin * 3.4;
@@ -459,7 +465,7 @@ function initSeasonScrollSpy() {
 
   const observerOptions = {
     root: null,
-    rootMargin: '-40% 0px -40% 0px', // Trigger when section occupies the mid portion of viewport
+    rootMargin: '-30% 0px -30% 0px', // Trigger when section occupies the mid portion of viewport
     threshold: 0
   };
 
@@ -478,6 +484,28 @@ function initSeasonScrollSpy() {
   sections.forEach(s => {
     const el = document.getElementById(s.id);
     if (el) seasonObserver.observe(el);
+  });
+
+  // Fallback scroll check to ensure seasons switch reliably on quick/extreme scroll
+  window.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY + window.innerHeight * 0.4;
+    let currentSeason = 'spring';
+
+    for (const sec of sections) {
+      const el = document.getElementById(sec.id);
+      if (el) {
+        const top = el.offsetTop;
+        const height = el.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSeason = sec.season;
+        }
+      }
+    }
+
+    if (!document.body.classList.contains('season-' + currentSeason)) {
+      document.body.classList.remove('season-spring', 'season-summer', 'season-autumn', 'season-winter');
+      document.body.classList.add('season-' + currentSeason);
+    }
   });
 }
 
@@ -504,4 +532,36 @@ function initScrollWindBoost() {
     }, 400);
   });
 }
+
+/* --- Night Mode Toggle Handler --- */
+function initNightMode() {
+  const toggleBtn = document.getElementById('night-mode-toggle');
+  if (!toggleBtn) return;
+
+  // Read saved client theme preference
+  const isDarkMode = localStorage.getItem('theme-dark') === 'true';
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+    const icon = toggleBtn.querySelector('i');
+    if (icon) icon.className = 'fa-solid fa-sun';
+    toggleBtn.title = 'Switch to Day Mode ☀️';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    const icon = toggleBtn.querySelector('i');
+    const currentlyDark = document.body.classList.contains('dark-mode');
+
+    if (currentlyDark) {
+      if (icon) icon.className = 'fa-solid fa-sun';
+      toggleBtn.title = 'Switch to Day Mode ☀️';
+      localStorage.setItem('theme-dark', 'true');
+    } else {
+      if (icon) icon.className = 'fa-solid fa-moon';
+      toggleBtn.title = 'Switch to Night Mode 🌙';
+      localStorage.setItem('theme-dark', 'false');
+    }
+  });
+}
+
 
