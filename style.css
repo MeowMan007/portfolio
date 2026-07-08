@@ -556,7 +556,6 @@ h4 {
   transform-origin: bottom center;
   animation: tree-gentle-sway 9s ease-in-out infinite alternate;
   z-index: 3;
-  mix-blend-mode: screen;
   filter: drop-shadow(0 15px 30px rgba(46, 204, 113, 0.18));
 }
 
