@@ -21,9 +21,14 @@ body {
   font-family: var(--font-body);
   overflow-x: hidden;
   position: relative;
-  transition: var(--transition-smooth);
+  transition: background-color 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+    color 1.2s cubic-bezier(0.25, 0.8, 0.25, 1),
+    border-color 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 
-  /* Unified MongoDB light green and white theme variables */
+/* --- Seasonal Themes (Applied dynamically on scroll) --- */
+
+body.season-spring {
   --bg-primary: #FFFFFF;
   --bg-secondary: #F9FBFA;
   --bg-blob-1: rgba(0, 237, 100, 0.08);
@@ -31,13 +36,9 @@ body {
   --bg-blob-2: rgba(0, 104, 74, 0.06);
   /* Forest Green glow */
   --text-primary: #001E2B;
-  /* Deep slate navy text */
   --text-secondary: #5C6F67;
-  /* Slate gray */
   --accent: #00684A;
-  /* Brand forest green */
   --accent-secondary: #00ED64;
-  /* Bright spring green */
   --accent-rgb: 0, 104, 74;
   --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(0, 104, 74, 0.12);
@@ -45,6 +46,76 @@ body {
   --inner-border: rgba(0, 237, 100, 0.10);
   --scrollbar-thumb: #C1E4D6;
   --scrollbar-track: #F9FBFA;
+}
+
+body.season-summer {
+  --bg-primary: #FCFDF9;
+  --bg-secondary: #F4F7EE;
+  --bg-blob-1: rgba(241, 196, 15, 0.09);
+  /* Golden pollen bloom */
+  --bg-blob-2: rgba(39, 174, 96, 0.08);
+  /* Emerald Summer green */
+  --text-primary: #0F2C1A;
+  --text-secondary: #486551;
+  --accent: #1B5E20;
+  /* Deep jungle green */
+  --accent-secondary: #F1C40F;
+  /* Sunflower gold */
+  --accent-rgb: 27, 94, 32;
+  --glass-bg: rgba(252, 253, 249, 0.8);
+  --glass-border: rgba(27, 94, 32, 0.12);
+  --card-shadow: 0 10px 30px rgba(15, 44, 26, 0.05), inset 0 0 0 1px rgba(27, 94, 32, 0.06);
+  --inner-border: rgba(241, 196, 15, 0.12);
+  --scrollbar-thumb: #D4E157;
+  --scrollbar-track: #F4F7EE;
+}
+
+body.season-autumn {
+  --bg-primary: #FDF9F5;
+  --bg-secondary: #F7EDE2;
+  --bg-blob-1: rgba(211, 84, 0, 0.08);
+  /* Burnt copper orange */
+  --bg-blob-2: rgba(243, 156, 18, 0.06);
+  /* Dry sycamore gold */
+  --text-primary: #2A1201;
+  /* Cinnamon dark wood */
+  --text-secondary: #6D503C;
+  --accent: #A04000;
+  /* Autumn amber */
+  --accent-secondary: #F39C12;
+  /* Golden yellow */
+  --accent-rgb: 160, 64, 0;
+  --glass-bg: rgba(253, 249, 245, 0.78);
+  --glass-border: rgba(160, 64, 0, 0.1);
+  --card-shadow: 0 10px 30px rgba(42, 18, 1, 0.05), inset 0 0 0 1px rgba(160, 64, 0, 0.05);
+  --inner-border: rgba(211, 84, 0, 0.10);
+  --scrollbar-thumb: #E59866;
+  --scrollbar-track: #F7EDE2;
+}
+
+body.season-winter {
+  --bg-primary: #F4F7F9;
+  /* Ice crystal white-blue */
+  --bg-secondary: #EAF2F8;
+  /* Glacier blue */
+  --bg-blob-1: rgba(94, 185, 230, 0.08);
+  /* Frosted sky blue */
+  --bg-blob-2: rgba(25, 42, 86, 0.04);
+  /* Aurora night */
+  --text-primary: #1C2833;
+  /* Frozen charcoal slate */
+  --text-secondary: #566573;
+  --accent: #2980B9;
+  /* Blizzard blue */
+  --accent-secondary: #5DADE2;
+  /* Flurry cyan */
+  --accent-rgb: 41, 128, 185;
+  --glass-bg: rgba(244, 247, 249, 0.82);
+  --glass-border: rgba(41, 128, 185, 0.1);
+  --card-shadow: 0 10px 30px rgba(28, 40, 51, 0.04), inset 0 0 0 1px rgba(41, 128, 185, 0.05);
+  --inner-border: rgba(94, 185, 230, 0.08);
+  --scrollbar-thumb: #AED6F1;
+  --scrollbar-track: #EAF2F8;
 }
 
 /* --- Base Resets & Layout --- */
@@ -707,41 +778,52 @@ h4 {
 }
 
 .section-header {
+  position: relative;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 4.5rem;
+  padding: 1rem 0;
+}
+
+.section-header::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  width: 140px;
+  height: 60px;
+  opacity: 0.12;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 45' fill='none' stroke='%2300684A'><path d='M10,35 C30,10 50,5 90,35' stroke-width='2' stroke-linecap='round'/><path d='M50,14 C58,6 64,8 68,12 L50,14' fill='%2300ED64' opacity='0.7'/><path d='M32,22 C26,16 20,20 18,24 L32,22' fill='%2300ED64' opacity='0.7'/><circle cx='50' cy='14' r='1.5' fill='%231B5E20'/><circle cx='32' cy='22' r='1.5' fill='%231B5E20'/><circle cx='68' cy='26' r='1.5' fill='%231B5E20'/></svg>") no-repeat center;
+  background-size: contain;
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.8s ease;
+  pointer-events: none;
+}
+
+.section-header:hover::before {
+  opacity: 0.25;
+  transform: translateX(-50%) scale(1.05);
+}
+
+body.season-summer .section-header::before {
+  filter: hue-rotate(5deg) saturate(1.8);
+}
+
+body.season-autumn .section-header::before {
+  filter: hue-rotate(30deg) saturate(1.6) brightness(0.9);
+}
+
+body.season-winter .section-header::before {
+  filter: hue-rotate(185deg) saturate(0.8) brightness(1.6);
+  opacity: 0.18;
 }
 
 .section-title {
   position: relative;
   display: inline-block;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 3px;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
-}
-
-.subheading {
-  display: block;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  color: var(--accent-secondary);
-  font-weight: 600;
-  letter-spacing: 3px;
-  margin-bottom: 0.8rem;
-}
-
-.section-title {
   font-size: 2.8rem;
   color: var(--text-primary);
   margin-bottom: 0.8rem;
+  transition: color 1.2s ease;
 }
 
 .floral-divider {

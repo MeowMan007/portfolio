@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initPollenTrail();
   initAutomaticWind();
   initContactForm();
+  initSeasonScrollSpy();
+  initScrollWindBoost();
 });
 
 /* --- Navbar Interactivity --- */
@@ -243,11 +245,48 @@ function initLeafCanvas() {
     draw() {
       ctx.save();
       ctx.translate(this.x, this.y);
+
+      // Winter snowflake drawing instead of leaves
+      if (document.body.classList.contains('season-winter')) {
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity * 0.95})`;
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = 'rgba(255, 255, 255, 0.4)';
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size * 0.3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.restore();
+        return;
+      }
+
       ctx.rotate(this.angle * Math.PI / 180);
 
+      // Determine leaf colors based on active season
+      let fillCol = `rgba(0, 237, 100, ${this.opacity})`; /* Spring green */
+      let strokeCol = `rgba(0, 104, 74, ${this.opacity * 0.6})`;
+
+      if (document.body.classList.contains('season-summer')) {
+        // Lush summer forest green
+        fillCol = `rgba(46, 125, 50, ${this.opacity})`;
+        strokeCol = `rgba(27, 94, 32, ${this.opacity * 0.6})`;
+      } else if (document.body.classList.contains('season-autumn')) {
+        // Autumn gold, rust, orange, red
+        const id = Math.floor(this.size + this.angle) % 3;
+        if (id === 0) {
+          fillCol = `rgba(211, 84, 0, ${this.opacity})`; /* Rust orange */
+          strokeCol = `rgba(160, 64, 0, ${this.opacity * 0.6})`;
+        } else if (id === 1) {
+          fillCol = `rgba(243, 156, 18, ${this.opacity})`; /* Golden amber */
+          strokeCol = `rgba(183, 149, 11, ${this.opacity * 0.5})`;
+        } else {
+          fillCol = `rgba(192, 57, 43, ${this.opacity})`; /* Maple red */
+          strokeCol = `rgba(120, 40, 31, ${this.opacity * 0.6})`;
+        }
+      }
+
       // Draw organic lanceolate leaf with midrib & side veins
-      ctx.fillStyle = `rgba(46, 204, 113, ${this.opacity})`;
-      ctx.strokeStyle = `rgba(30, 130, 76, ${this.opacity * 0.6})`;
+      ctx.fillStyle = fillCol;
+      ctx.strokeStyle = strokeCol;
       ctx.lineWidth = 0.6;
 
       ctx.beginPath();
@@ -406,3 +445,63 @@ function initContactForm() {
     }, 1500);
   });
 }
+
+/* --- Scroll-Spy Season Switcher --- */
+function initSeasonScrollSpy() {
+  const sections = [
+    { id: 'hero', season: 'spring' },
+    { id: 'about', season: 'summer' },
+    { id: 'experience', season: 'autumn' },
+    { id: 'projects', season: 'autumn' },
+    { id: 'skills', season: 'winter' },
+    { id: 'contact', season: 'winter' }
+  ];
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-40% 0px -40% 0px', // Trigger when section occupies the mid portion of viewport
+    threshold: 0
+  };
+
+  const seasonObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const sectionConfig = sections.find(s => s.id === entry.target.id);
+        if (sectionConfig) {
+          document.body.classList.remove('season-spring', 'season-summer', 'season-autumn', 'season-winter');
+          document.body.classList.add('season-' + sectionConfig.season);
+        }
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(s => {
+    const el = document.getElementById(s.id);
+    if (el) seasonObserver.observe(el);
+  });
+}
+
+/* --- Scroll Wind Velocity Boost --- */
+function initScrollWindBoost() {
+  let lastScrollY = window.scrollY;
+  let scrollTimeout;
+
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    const delta = Math.abs(currentScrollY - lastScrollY);
+    lastScrollY = currentScrollY;
+
+    if (delta > 3) {
+      // Direct proportion wind speed boost depending on scrolling speed
+      const scrollWind = Math.min(4.8, delta * 0.08);
+      // Wind bursts right/left alternates based on scroll position values
+      targetWind = scrollWind * (currentScrollY % 2 === 0 ? 1 : -1);
+    }
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      targetWind = 0.35;
+    }, 400);
+  });
+}
+
