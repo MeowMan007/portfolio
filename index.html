@@ -65,6 +65,63 @@
   <main>
     <!-- Hero Section -->
     <section id="hero" class="hero-section">
+      <!-- Sunshine Rays -->
+      <div class="sun-rays">
+        <div class="ray ray-1"></div>
+        <div class="ray ray-2"></div>
+        <div class="ray ray-3"></div>
+      </div>
+
+      <!-- Floating Clouds Layer -->
+      <div class="clouds-layer" aria-hidden="true">
+        <div class="cloud cloud-1">
+          <svg viewBox="0 0 200 80" fill="white">
+            <ellipse cx="60" cy="50" rx="50" ry="25" />
+            <ellipse cx="100" cy="35" rx="55" ry="30" />
+            <ellipse cx="140" cy="50" rx="45" ry="22" />
+            <ellipse cx="100" cy="50" rx="60" ry="22" />
+          </svg>
+        </div>
+        <div class="cloud cloud-2">
+          <svg viewBox="0 0 180 70" fill="white">
+            <ellipse cx="50" cy="45" rx="40" ry="20" />
+            <ellipse cx="90" cy="30" rx="50" ry="25" />
+            <ellipse cx="130" cy="45" rx="35" ry="18" />
+            <ellipse cx="90" cy="45" rx="50" ry="20" />
+          </svg>
+        </div>
+        <div class="cloud cloud-3">
+          <svg viewBox="0 0 160 60" fill="white">
+            <ellipse cx="45" cy="38" rx="35" ry="18" />
+            <ellipse cx="80" cy="25" rx="40" ry="22" />
+            <ellipse cx="115" cy="38" rx="30" ry="16" />
+            <ellipse cx="80" cy="38" rx="45" ry="18" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Ambient Flying Birds -->
+      <div class="birds-layer" aria-hidden="true">
+        <div class="bird bird-1">
+          <svg viewBox="0 0 30 12" width="30">
+            <path d="M0,6 Q7,0 15,6 Q23,0 30,6" fill="none" stroke="#001E2B" stroke-width="1.5" stroke-linecap="round"
+              opacity="0.15" />
+          </svg>
+        </div>
+        <div class="bird bird-2">
+          <svg viewBox="0 0 24 10" width="24">
+            <path d="M0,5 Q6,0 12,5 Q18,0 24,5" fill="none" stroke="#001E2B" stroke-width="1.2" stroke-linecap="round"
+              opacity="0.12" />
+          </svg>
+        </div>
+        <div class="bird bird-3">
+          <svg viewBox="0 0 20 8" width="20">
+            <path d="M0,4 Q5,0 10,4 Q15,0 20,4" fill="none" stroke="#001E2B" stroke-width="1" stroke-linecap="round"
+              opacity="0.1" />
+          </svg>
+        </div>
+      </div>
+
       <div class="hero-bg-blobs">
         <div class="blob-1"></div>
         <div class="blob-2"></div>
@@ -98,13 +155,6 @@
         </div>
         <div class="hero-visual animate-zoom-in">
           <div class="aesthetic-tree-container">
-            <!-- Diagonal sun rays -->
-            <div class="sun-rays">
-              <div class="ray ray-1"></div>
-              <div class="ray ray-2"></div>
-              <div class="ray ray-3"></div>
-            </div>
-
             <!-- Profile Frame with Branch background & Circular headshot -->
             <div class="profile-hero-frame">
               <!-- Pulsating Glow Halos -->
@@ -138,33 +188,7 @@
       </div>
     </section>
 
-    <!-- Floating Clouds Layer (drifts across hero) -->
-    <div class="clouds-layer" aria-hidden="true">
-      <div class="cloud cloud-1">
-        <svg viewBox="0 0 200 80" fill="white">
-          <ellipse cx="60" cy="50" rx="50" ry="25" />
-          <ellipse cx="100" cy="35" rx="55" ry="30" />
-          <ellipse cx="140" cy="50" rx="45" ry="22" />
-          <ellipse cx="100" cy="50" rx="60" ry="22" />
-        </svg>
-      </div>
-      <div class="cloud cloud-2">
-        <svg viewBox="0 0 180 70" fill="white">
-          <ellipse cx="50" cy="45" rx="40" ry="20" />
-          <ellipse cx="90" cy="30" rx="50" ry="25" />
-          <ellipse cx="130" cy="45" rx="35" ry="18" />
-          <ellipse cx="90" cy="45" rx="50" ry="20" />
-        </svg>
-      </div>
-      <div class="cloud cloud-3">
-        <svg viewBox="0 0 160 60" fill="white">
-          <ellipse cx="45" cy="38" rx="35" ry="18" />
-          <ellipse cx="80" cy="25" rx="40" ry="22" />
-          <ellipse cx="115" cy="38" rx="30" ry="16" />
-          <ellipse cx="80" cy="38" rx="45" ry="18" />
-        </svg>
-      </div>
-    </div>
+
 
     <!-- Tree Canopy Wave Divider -->
     <div class="canopy-divider" aria-hidden="true">
@@ -192,27 +216,7 @@
       </svg>
     </div>
 
-    <!-- Ambient Flying Birds -->
-    <div class="birds-layer" aria-hidden="true">
-      <div class="bird bird-1">
-        <svg viewBox="0 0 30 12" width="30">
-          <path d="M0,6 Q7,0 15,6 Q23,0 30,6" fill="none" stroke="#001E2B" stroke-width="1.5" stroke-linecap="round"
-            opacity="0.15" />
-        </svg>
-      </div>
-      <div class="bird bird-2">
-        <svg viewBox="0 0 24 10" width="24">
-          <path d="M0,5 Q6,0 12,5 Q18,0 24,5" fill="none" stroke="#001E2B" stroke-width="1.2" stroke-linecap="round"
-            opacity="0.12" />
-        </svg>
-      </div>
-      <div class="bird bird-3">
-        <svg viewBox="0 0 20 8" width="20">
-          <path d="M0,4 Q5,0 10,4 Q15,0 20,4" fill="none" stroke="#001E2B" stroke-width="1" stroke-linecap="round"
-            opacity="0.1" />
-        </svg>
-      </div>
-    </div>
+
 
     <!-- About Section -->
     <section id="about" class="about-section section-padding scroll-reveal">
@@ -270,6 +274,17 @@
               </div>
             </div>
 
+            <!-- Timeline Item 2 -->
+            <div class="timeline-card glass scroll-reveal">
+              <div class="timeline-dot"></div>
+              <span class="timeline-date">2020 — 2021</span>
+              <h4>Class XII</h4>
+              <p class="institution">Dewan Public School, Hapur</p>
+              <div class="grade-badge">
+                <span class="badge-title">Percentage</span>
+                <span class="badge-value">91%</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
