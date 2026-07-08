@@ -482,8 +482,8 @@ h4 {
 .aesthetic-tree-container {
   position: relative;
   width: 100%;
-  max-width: 750px;
-  height: 720px;
+  max-width: 900px;
+  height: 850px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
