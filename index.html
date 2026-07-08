@@ -49,13 +49,6 @@
       </nav>
 
       <div class="nav-controls">
-        <!-- Interactive Season Switcher -->
-        <div class="season-selector glass">
-          <button class="season-btn" data-season="spring" title="Spring 🌱">🌱</button>
-          <button class="season-btn" data-season="summer" title="Summer ☀️">☀️</button>
-          <button class="season-btn" data-season="autumn" title="Autumn 🍁">🍁</button>
-          <button class="season-btn" data-season="winter" title="Winter ❄️">❄️</button>
-        </div>
         <!-- Wind Gust Trigger -->
         <button id="wind-gust-btn" class="wind-toggle-btn" title="Simulate Wind Gust 💨">
           <i class="fa-solid fa-wind"></i>
@@ -99,47 +92,131 @@
           </div>
         </div>
         <div class="hero-visual animate-zoom-in">
-          <div class="tree-container">
-            <!-- Diagonal sunlight beams -->
+          <div class="aesthetic-tree-container">
+            <!-- Diagonal sun rays -->
             <div class="sun-rays">
               <div class="ray ray-1"></div>
               <div class="ray ray-2"></div>
               <div class="ray ray-3"></div>
             </div>
 
-            <!-- Graphic profile ring -->
-            <div class="profile-leaf-ring">
-              <i class="fa-solid fa-tree tree-center-icon"></i>
-            </div>
-
-            <!-- Stylized SVG Tree -->
-            <svg class="svg-tree" viewBox="0 0 300 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stylized Page-Spanning Vector SVG Tree -->
+            <svg class="svg-tree" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+              <!-- Deep Roots / Soil Base -->
+              <path d="M 320,795 Q 360,780 400,785 Q 440,780 480,795 Q 400,798 320,795 Z" fill="#4d3527"
+                opacity="0.3" />
               <!-- Trunk -->
               <path class="tree-trunk"
-                d="M150 400 L150 240 Q150 180 130 160 Q150 170 170 150 C180 140 160 190 150 240 Z" fill="#6E4F3A" />
-              <!-- Swaying Branches & Leaves -->
-              <g class="tree-branch branch-left">
-                <path d="M145 210 C120 190 90 180 60 190 Q90 175 137 195 Z" fill="#6E4F3A" />
-                <path class="hanging-leaf leaf-left-1" d="M60 190 Q45 175 52 165 Q65 175 60 190 Z"
+                d="M 380,800 C 410,730 405,530 440,430 C 450,405 470,390 480,350 C 460,370 432,375 418,395 C 405,415 400,490 388,590 C 383,670 372,750 380,800 Z"
+                fill="#5c4033" />
+
+              <!-- Left Lower Branch System -->
+              <g class="tree-branch branch-low-left">
+                <path d="M 400,560 C 350,540 290,510 230,520 C 265,495 330,500 385,530 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 280,510 C 240,455 190,475 160,495 Q 210,465 260,505 Z" fill="#5c4033" />
+                <!-- Leaf clusters -->
+                <path class="hanging-leaf leaf-1" d="M 230,520 Q 200,500 215,480 Q 245,500 230,520 Z"
                   fill="var(--accent)" />
-                <path class="hanging-leaf leaf-left-2" d="M90 182 Q75 168 84 158 Q95 168 90 182 Z"
+                <path class="hanging-leaf leaf-2" d="M 270,505 Q 250,480 262,465 Q 285,485 270,505 Z"
+                  fill="var(--accent-secondary)" />
+                <path class="hanging-leaf leaf-3" d="M 172,488 Q 150,460 165,445 Q 185,475 172,488 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-4" d="M 195,475 Q 180,448 190,438 Q 208,460 195,475 Z"
                   fill="var(--accent-secondary)" />
               </g>
-              <g class="tree-branch branch-right">
-                <path d="M155 200 C180 180 210 170 240 180 Q195 165 162 185 Z" fill="#6E4F3A" />
-                <path class="hanging-leaf leaf-right-1" d="M240 180 Q255 165 248 155 Q235 165 240 180 Z"
+
+              <!-- Right Lower Branch System -->
+              <g class="tree-branch branch-low-right">
+                <path d="M 390,590 C 440,570 510,560 580,590 C 540,540 460,545 400,570 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 495,570 C 535,510 575,520 620,535 Q 560,505 510,555 Z" fill="#5c4033" />
+                <!-- Leaf clusters -->
+                <path class="hanging-leaf leaf-1" d="M 580,590 Q 610,570 595,550 Q 565,570 580,590 Z"
                   fill="var(--accent)" />
-                <path class="hanging-leaf leaf-right-2" d="M205 172 Q220 158 212 148 Q200 158 205 172 Z"
+                <path class="hanging-leaf leaf-2" d="M 530,565 Q 550,540 538,525 Q 515,545 530,565 Z"
+                  fill="var(--accent-secondary)" />
+                <path class="hanging-leaf leaf-3" d="M 620,535 Q 645,515 632,498 Q 605,520 620,535 Z"
+                  fill="var(--accent)" />
+              </g>
+
+              <!-- Middle Left Branch System -->
+              <g class="tree-branch branch-mid-left">
+                <path d="M 420,470 C 355,420 280,390 190,410 C 240,380 325,380 400,430 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 290,400 C 245,340 170,350 130,370 Q 185,335 250,380 Z" fill="#5c4033" />
+                <path class="hanging-leaf leaf-1" d="M 190,410 Q 160,395 172,375 Q 205,390 190,410 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-2" d="M 250,395 Q 230,370 242,355 Q 265,380 250,395 Z"
+                  fill="var(--accent-secondary)" />
+                <path class="hanging-leaf leaf-3" d="M 300,390 Q 285,360 295,345 Q 315,370 300,390 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-4" d="M 140,365 Q 115,345 128,330 Q 155,348 140,365 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-5" d="M 175,355 Q 150,332 162,318 Q 188,338 175,355 Z"
                   fill="var(--accent-secondary)" />
               </g>
-              <g class="tree-branch branch-top">
-                <path d="M150 180 L150 100 Q160 70 150 40 Q140 70 150 100 Z" fill="#6E4F3A" />
-                <path class="hanging-leaf leaf-top-1" d="M150 40 Q135 25 150 12 Q165 25 150 40 Z"
+
+              <!-- Middle Right Branch System -->
+              <g class="tree-branch branch-mid-right">
+                <path d="M 432,440 C 495,390 565,370 655,420 C 585,370 505,370 422,415 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 540,405 C 590,340 660,345 700,365 Q 640,335 572,385 Z" fill="#5c4033" />
+                <path class="hanging-leaf leaf-1" d="M 655,420 Q 685,400 673,380 Q 640,400 655,420 Z"
                   fill="var(--accent)" />
-                <path class="hanging-leaf leaf-top-2" d="M135 80 Q120 62 131 52 Q144 62 135 80 Z"
+                <path class="hanging-leaf leaf-2" d="M 575,385 Q 595,360 583,345 Q 560,365 575,385 Z"
                   fill="var(--accent-secondary)" />
-                <path class="hanging-leaf leaf-top-3" d="M165 75 Q180 58 171 48 Q158 58 165 75 Z"
+                <path class="hanging-leaf leaf-3" d="M 485,390 Q 500,360 490,345 Q 475,370 485,390 Z"
                   fill="var(--accent)" />
+                <path class="hanging-leaf leaf-4" d="M 700,365 Q 725,345 712,328 Q 685,350 700,365 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-5" d="M 650,352 Q 672,330 660,316 Q 635,338 650,352 Z"
+                  fill="var(--accent-secondary)" />
+              </g>
+
+              <!-- Top Left Limb System -->
+              <g class="tree-branch branch-top-left">
+                <path d="M 425,380 C 375,300 305,250 205,260 C 265,230 355,250 410,330 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 315,280 C 270,210 215,200 170,210 Q 235,190 280,250 Z" fill="#5c4033" />
+                <path class="hanging-leaf leaf-1" d="M 205,260 Q 175,245 187,225 Q 220,240 205,260 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-2" d="M 275,250 Q 260,220 271,206 Q 290,230 275,250 Z"
+                  fill="var(--accent-secondary)" />
+                <path class="hanging-leaf leaf-3" d="M 170,210 Q 140,195 152,178 Q 185,190 170,210 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-4" d="M 220,205 Q 200,180 211,168 Q 235,190 220,205 Z"
+                  fill="var(--accent-secondary)" />
+              </g>
+
+              <!-- Top Right Limb System -->
+              <g class="tree-branch branch-top-right">
+                <path d="M 455,370 C 505,290 575,240 675,250 C 615,220 525,240 470,320 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 565,275 C 610,205 665,195 710,205 Q 645,185 600,245 Z" fill="#5c4033" />
+                <path class="hanging-leaf leaf-1" d="M 675,250 Q 705,235 693,215 Q 660,230 675,250 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-2" d="M 595,245 Q 610,215 599,201 Q 580,230 595,245 Z"
+                  fill="var(--accent-secondary)" />
+                <path class="hanging-leaf leaf-3" d="M 710,205 Q 740,190 728,172 Q 695,188 710,205 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-4" d="M 655,200 Q 675,175 664,161 Q 640,185 655,200 Z"
+                  fill="var(--accent-secondary)" />
+              </g>
+
+              <!-- Crown / Center Canopy -->
+              <g class="tree-branch branch-crown">
+                <path d="M 440,350 C 430,230 370,165 390,95 C 410,160 450,230 440,350 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 410,200 C 375,120 300,135 260,150 Q 320,115 385,170 Z" fill="#5c4033" />
+                <path class="branch-stem" d="M 425,180 C 460,110 520,115 560,130 Q 500,105 445,160 Z" fill="#5c4033" />
+                <!-- Leaf clusters -->
+                <path class="hanging-leaf leaf-1" d="M 390,95 Q 370,68 385,50 Q 405,68 390,95 Z" fill="var(--accent)" />
+                <path class="hanging-leaf leaf-2" d="M 355,152 Q 330,128 342,112 Q 370,132 355,152 Z"
+                  fill="var(--accent-secondary)" />
+                <path class="hanging-leaf leaf-3" d="M 425,152 Q 450,128 438,112 Q 410,132 425,152 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-4" d="M 260,150 Q 230,132 245,115 Q 275,132 260,150 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-5" d="M 300,140 Q 280,112 291,100 Q 312,122 300,140 Z"
+                  fill="var(--accent-secondary)" />
+                <path class="hanging-leaf leaf-6" d="M 560,130 Q 590,112 575,95 Q 545,112 560,130 Z"
+                  fill="var(--accent)" />
+                <path class="hanging-leaf leaf-7" d="M 520,125 Q 540,100 528,88 Q 505,110 520,125 Z"
+                  fill="var(--accent-secondary)" />
               </g>
             </svg>
           </div>

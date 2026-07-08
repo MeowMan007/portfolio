@@ -13,31 +13,17 @@
   --border-radius-petal: 50% 50% 50% 50% / 60% 60% 40% 40%;
 }
 
-/* 🌱 Spring (Sage and Cream) */
-body.spring {
-  --bg-primary: #F4F7F4;
-  --bg-secondary: #FAFDFA;
-  --bg-blob-1: rgba(162, 217, 183, 0.3);
-  /* Soft lime mint */
-  --bg-blob-2: rgba(180, 200, 170, 0.25);
-  /* Pale sage */
-  --text-primary: #1C2921;
-  --text-secondary: #556B5C;
-  --accent: #27AE60;
-  /* Spring leaf green */
-  --accent-secondary: #8EBA9A;
-  /* Soft mint tea */
-  --accent-rgb: 39, 174, 96;
-  --glass-bg: rgba(255, 255, 255, 0.5);
-  --glass-border: rgba(255, 255, 255, 0.65);
-  --card-shadow: 0 15px 35px rgba(85, 107, 92, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-  --inner-border: rgba(39, 174, 96, 0.12);
-  --scrollbar-thumb: #C8D6CD;
-  --scrollbar-track: #EFF4EF;
-}
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  position: relative;
+  transition: var(--transition-smooth);
 
-/* ☀️ Summer (Emerald Leaves & Warm Gold) */
-body.summer {
+  /* Unified aesthetic nature theme variables (Emerald, Forest, Sand & Gold) */
   --bg-primary: #0A110D;
   --bg-secondary: #101B15;
   --bg-blob-1: rgba(46, 204, 113, 0.25);
@@ -57,52 +43,6 @@ body.summer {
   --inner-border: rgba(241, 196, 15, 0.18);
   --scrollbar-thumb: #1D3528;
   --scrollbar-track: #0B110E;
-}
-
-/* 🍁 Autumn (Cozy Amber Leaf & Cinnamon Crimson) */
-body.autumn {
-  --bg-primary: #120905;
-  --bg-secondary: #1D0F08;
-  --bg-blob-1: rgba(230, 126, 34, 0.25);
-  /* Bronze orange */
-  --bg-blob-2: rgba(192, 57, 43, 0.2);
-  /* Deep crimson */
-  --text-primary: #F9EBE0;
-  --text-secondary: #BFAEA4;
-  --accent: #E67E22;
-  /* Rust/Maple orange */
-  --accent-secondary: #C0392B;
-  /* Crimson red */
-  --accent-rgb: 230, 126, 34;
-  --glass-bg: rgba(29, 15, 8, 0.65);
-  --glass-border: rgba(230, 126, 34, 0.15);
-  --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(230, 126, 34, 0.12);
-  --inner-border: rgba(192, 57, 43, 0.2);
-  --scrollbar-thumb: #3B1E10;
-  --scrollbar-track: #130B07;
-}
-
-/* ❄️ Winter (Frosty Cyan & Silver Snowdrift) */
-body.winter {
-  --bg-primary: #070B13;
-  --bg-secondary: #0E1321;
-  --bg-blob-1: rgba(82, 179, 217, 0.22);
-  /* Glacier cyan */
-  --bg-blob-2: rgba(220, 225, 235, 0.12);
-  /* Frost white */
-  --text-primary: #E0E6F3;
-  --text-secondary: #9AA3B5;
-  --accent: #52B3D9;
-  /* Ice blue */
-  --accent-secondary: #ECF0F1;
-  /* Snow silver */
-  --accent-rgb: 82, 179, 217;
-  --glass-bg: rgba(14, 19, 33, 0.65);
-  --glass-border: rgba(82, 179, 217, 0.15);
-  --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(82, 179, 217, 0.12);
-  --inner-border: rgba(236, 240, 241, 0.15);
-  --scrollbar-thumb: #1D263B;
-  --scrollbar-track: #080C14;
 }
 
 /* --- Base Resets & Layout --- */
@@ -539,23 +479,25 @@ h4 {
   width: 100%;
 }
 
-.tree-container {
+.aesthetic-tree-container {
   position: relative;
-  width: 320px;
-  height: 400px;
+  width: 100%;
+  max-width: 580px;
+  height: 580px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   overflow: visible;
+  margin: 0 auto;
 }
 
-/* Sunbeams / Komorebi overlay */
+/* Sunbeams overlay */
 .sun-rays {
   position: absolute;
-  top: -15%;
-  left: -15%;
-  width: 130%;
-  height: 130%;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
@@ -565,7 +507,7 @@ h4 {
   position: absolute;
   top: 0;
   left: 0;
-  width: 60px;
+  width: 65px;
   height: 200%;
   background: linear-gradient(to bottom, rgba(241, 196, 15, 0.12) 0%, rgba(241, 196, 15, 0) 70%);
   transform: rotate(-35deg) translate(-40px, -90px);
@@ -606,76 +548,279 @@ h4 {
   }
 }
 
-/* Stylized Vector SVG Tree */
+/* Page-Spanning Stylized Vector SVG Tree */
 .svg-tree {
   width: 100%;
   height: 100%;
   transform-origin: bottom center;
   animation: gentle-sway-trunk 8s ease-in-out infinite alternate;
   z-index: 3;
+  overflow: visible;
 }
 
 .tree-trunk {
-  transform-origin: 150px 380px;
+  transform-origin: 388px 790px;
 }
 
 .tree-branch {
-  transition: transform 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: inherit;
 }
 
-.branch-left {
-  transform-origin: 145px 210px;
+.branch-low-left {
+  transform-origin: 395px 545px;
   animation: gentle-sway-left 6s ease-in-out infinite alternate;
 }
 
-.branch-right {
-  transform-origin: 155px 200px;
+.branch-low-right {
+  transform-origin: 400px 575px;
   animation: gentle-sway-right 7s ease-in-out infinite alternate;
 }
 
-.branch-top {
-  transform-origin: 150px 180px;
-  animation: gentle-sway-top 8s ease-in-out infinite alternate;
+.branch-mid-left {
+  transform-origin: 410px 450px;
+  animation: gentle-sway-left-subtle 6.5s ease-in-out infinite alternate;
+}
+
+.branch-mid-right {
+  transform-origin: 430px 425px;
+  animation: gentle-sway-right-subtle 7.5s ease-in-out infinite alternate;
+}
+
+.branch-top-left {
+  transform-origin: 418px 355px;
+  animation: gentle-sway-left 8s ease-in-out infinite alternate;
+}
+
+.branch-top-right {
+  transform-origin: 460px 345px;
+  animation: gentle-sway-right 8s ease-in-out infinite alternate;
+}
+
+.branch-crown {
+  transform-origin: 440px 350px;
+  animation: gentle-sway-top 8.5s ease-in-out infinite alternate;
 }
 
 .hanging-leaf {
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
+  transform-origin: center;
 }
 
 /* Gentle Sways */
 @keyframes gentle-sway-trunk {
   0% {
-    transform: rotate(-1deg);
+    transform: rotate(-0.5deg);
   }
 
   100% {
-    transform: rotate(1deg);
+    transform: rotate(0.5deg);
   }
 }
 
 @keyframes gentle-sway-left {
   0% {
-    transform: rotate(-2.5deg) scale(0.98);
+    transform: rotate(-1.5deg) scale(0.99);
   }
 
   100% {
-    transform: rotate(2deg) scale(1.02);
+    transform: rotate(1deg) scale(1.01);
   }
 }
 
 @keyframes gentle-sway-right {
   0% {
-    transform: rotate(-1.5deg) scale(1.02);
+    transform: rotate(-0.8deg) scale(1.01);
   }
 
   100% {
-    transform: rotate(3deg) scale(0.98);
+    transform: rotate(1.8deg) scale(0.99);
+  }
+}
+
+@keyframes gentle-sway-left-subtle {
+  0% {
+    transform: rotate(-1deg);
+  }
+
+  100% {
+    transform: rotate(0.8deg);
+  }
+}
+
+@keyframes gentle-sway-right-subtle {
+  0% {
+    transform: rotate(-0.6deg);
+  }
+
+  100% {
+    transform: rotate(1.2deg);
   }
 }
 
 @keyframes gentle-sway-top {
   0% {
+    transform: rotate(-1.2deg);
+  }
+
+  100% {
+    transform: rotate(1.2deg);
+  }
+}
+
+/* Windy Active Sways (Wind Gusts) */
+/* --- Windy Right Sways --- */
+.aesthetic-tree-container.windy-right .svg-tree {
+  animation: windy-right-trunk 1.6s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-right .branch-low-left {
+  animation: windy-right-low-left 1.1s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-right .branch-low-right {
+  animation: windy-right-low-right 1.2s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-right .branch-mid-left {
+  animation: windy-right-mid-left 1.3s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-right .branch-mid-right {
+  animation: windy-right-mid-right 1.2s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-right .branch-top-left {
+  animation: windy-right-top-left 1.4s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-right .branch-top-right {
+  animation: windy-right-top-right 1.3s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-right .branch-crown {
+  animation: windy-right-crown 1.5s ease-in-out infinite alternate;
+}
+
+/* Keyframes Right Sways */
+@keyframes windy-right-trunk {
+  0% {
     transform: rotate(-2deg);
+  }
+
+  100% {
+    transform: rotate(3deg);
+  }
+}
+
+@keyframes windy-right-low-left {
+  0% {
+    transform: rotate(-7deg) skewX(-1deg);
+  }
+
+  100% {
+    transform: rotate(4deg) skewX(2deg);
+  }
+}
+
+@keyframes windy-right-low-right {
+  0% {
+    transform: rotate(-4deg) skewX(1deg);
+  }
+
+  100% {
+    transform: rotate(9deg) skewX(-1deg);
+  }
+}
+
+@keyframes windy-right-mid-left {
+  0% {
+    transform: rotate(-9deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes windy-right-mid-right {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes windy-right-top-left {
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes windy-right-top-right {
+  0% {
+    transform: rotate(-6deg);
+  }
+
+  100% {
+    transform: rotate(12deg);
+  }
+}
+
+@keyframes windy-right-crown {
+  0% {
+    transform: rotate(-5deg);
+  }
+
+  100% {
+    transform: rotate(8deg);
+  }
+}
+
+
+/* --- Windy Left Sways --- */
+.aesthetic-tree-container.windy-left .svg-tree {
+  animation: windy-left-trunk 1.6s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-left .branch-low-left {
+  animation: windy-left-low-left 1.1s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-left .branch-low-right {
+  animation: windy-left-low-right 1.2s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-left .branch-mid-left {
+  animation: windy-left-mid-left 1.3s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-left .branch-mid-right {
+  animation: windy-left-mid-right 1.2s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-left .branch-top-left {
+  animation: windy-left-top-left 1.4s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-left .branch-top-right {
+  animation: windy-left-top-right 1.3s ease-in-out infinite alternate;
+}
+
+.aesthetic-tree-container.windy-left .branch-crown {
+  animation: windy-left-crown 1.5s ease-in-out infinite alternate;
+}
+
+/* Keyframes Left Sways */
+@keyframes windy-left-trunk {
+  0% {
+    transform: rotate(-3deg);
   }
 
   100% {
@@ -683,60 +828,73 @@ h4 {
   }
 }
 
-/* Windy Active Sways (Wind Gusts) */
-.tree-container.windy .svg-tree {
-  animation: windy-sway-trunk 1.5s ease-in-out infinite alternate;
-}
-
-.tree-container.windy .branch-left {
-  animation: windy-sway-left 1.1s ease-in-out infinite alternate;
-}
-
-.tree-container.windy .branch-right {
-  animation: windy-sway-right 1.2s ease-in-out infinite alternate;
-}
-
-.tree-container.windy .branch-top {
-  animation: windy-sway-top 1.3s ease-in-out infinite alternate;
-}
-
-@keyframes windy-sway-trunk {
+@keyframes windy-left-low-left {
   0% {
-    transform: rotate(-3.5deg);
+    transform: rotate(-9deg) skewX(-2deg);
   }
 
   100% {
-    transform: rotate(3.5deg);
+    transform: rotate(4deg) skewX(1deg);
   }
 }
 
-@keyframes windy-sway-left {
+@keyframes windy-left-low-right {
   0% {
-    transform: rotate(-12deg) skewX(-2deg);
+    transform: rotate(-10deg) skewX(-1deg);
   }
 
   100% {
-    transform: rotate(5deg) skewX(2deg);
+    transform: rotate(4deg) skewX(2deg);
   }
 }
 
-@keyframes windy-sway-right {
+@keyframes windy-left-mid-left {
   0% {
-    transform: rotate(-10deg) skewX(2deg);
+    transform: rotate(-11deg);
   }
 
   100% {
-    transform: rotate(14deg) skewX(-2deg);
+    transform: rotate(5deg);
   }
 }
 
-@keyframes windy-sway-top {
+@keyframes windy-left-mid-right {
   0% {
-    transform: rotate(-7deg);
+    transform: rotate(-10deg);
   }
 
   100% {
-    transform: rotate(7deg);
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes windy-left-top-left {
+  0% {
+    transform: rotate(-13deg);
+  }
+
+  100% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes windy-left-top-right {
+  0% {
+    transform: rotate(-12deg);
+  }
+
+  100% {
+    transform: rotate(6deg);
+  }
+}
+
+@keyframes windy-left-crown {
+  0% {
+    transform: rotate(-8deg);
+  }
+
+  100% {
+    transform: rotate(5deg);
   }
 }
 
