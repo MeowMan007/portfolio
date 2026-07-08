@@ -23,26 +23,28 @@ body {
   position: relative;
   transition: var(--transition-smooth);
 
-  /* Unified aesthetic nature theme variables (Emerald, Forest, Sand & Gold) */
-  --bg-primary: #0A110D;
-  --bg-secondary: #101B15;
-  --bg-blob-1: rgba(46, 204, 113, 0.25);
-  /* Emerald green */
-  --bg-blob-2: rgba(241, 196, 15, 0.15);
-  /* Warm gold */
-  --text-primary: #E5F6EE;
-  --text-secondary: #93A69C;
-  --accent: #2ECC71;
-  /* Lush leaf green */
-  --accent-secondary: #F1C40F;
-  /* Golden yellow sun */
-  --accent-rgb: 46, 204, 113;
-  --glass-bg: rgba(16, 27, 21, 0.65);
-  --glass-border: rgba(46, 204, 113, 0.15);
-  --card-shadow: 0 15px 40px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(46, 204, 113, 0.12);
-  --inner-border: rgba(241, 196, 15, 0.18);
-  --scrollbar-thumb: #1D3528;
-  --scrollbar-track: #0B110E;
+  /* Unified MongoDB light green and white theme variables */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F9FBFA;
+  --bg-blob-1: rgba(0, 237, 100, 0.08);
+  /* Spring Green glow */
+  --bg-blob-2: rgba(0, 104, 74, 0.06);
+  /* Forest Green glow */
+  --text-primary: #001E2B;
+  /* Deep slate navy text */
+  --text-secondary: #5C6F67;
+  /* Slate gray */
+  --accent: #00684A;
+  /* Brand forest green */
+  --accent-secondary: #00ED64;
+  /* Bright spring green */
+  --accent-rgb: 0, 104, 74;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 104, 74, 0.12);
+  --card-shadow: 0 10px 30px rgba(0, 30, 43, 0.05), inset 0 0 0 1px rgba(0, 104, 74, 0.06);
+  --inner-border: rgba(0, 237, 100, 0.10);
+  --scrollbar-thumb: #C1E4D6;
+  --scrollbar-track: #F9FBFA;
 }
 
 /* --- Base Resets & Layout --- */
