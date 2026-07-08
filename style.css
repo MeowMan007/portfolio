@@ -13,27 +13,27 @@
   --border-radius-petal: 50% 50% 50% 50% / 60% 60% 40% 40%;
 }
 
-/* 🌸 Spring (Blossoms and Cream) */
+/* 🌱 Spring (Sage and Cream) */
 body.spring {
-  --bg-primary: #FAF6F0;
-  --bg-secondary: #FFFDFB;
-  --bg-blob-1: rgba(255, 182, 193, 0.35);
-  /* Soft cherry pink */
-  --bg-blob-2: rgba(143, 168, 155, 0.25);
-  /* Sage green */
-  --text-primary: #2B2329;
-  --text-secondary: #6A5B65;
-  --accent: #E26A87;
-  /* Cherry blossom pink */
-  --accent-secondary: #6F8E7D;
-  /* Soft leaf green */
-  --accent-rgb: 226, 106, 135;
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.6);
-  --card-shadow: 0 15px 35px rgba(111, 80, 95, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-  --inner-border: rgba(226, 106, 135, 0.12);
-  --scrollbar-thumb: #D3BDB0;
-  --scrollbar-track: #F5EFEB;
+  --bg-primary: #F4F7F4;
+  --bg-secondary: #FAFDFA;
+  --bg-blob-1: rgba(162, 217, 183, 0.3);
+  /* Soft lime mint */
+  --bg-blob-2: rgba(180, 200, 170, 0.25);
+  /* Pale sage */
+  --text-primary: #1C2921;
+  --text-secondary: #556B5C;
+  --accent: #27AE60;
+  /* Spring leaf green */
+  --accent-secondary: #8EBA9A;
+  /* Soft mint tea */
+  --accent-rgb: 39, 174, 96;
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --card-shadow: 0 15px 35px rgba(85, 107, 92, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  --inner-border: rgba(39, 174, 96, 0.12);
+  --scrollbar-thumb: #C8D6CD;
+  --scrollbar-track: #EFF4EF;
 }
 
 /* ☀️ Summer (Emerald Leaves & Warm Gold) */
