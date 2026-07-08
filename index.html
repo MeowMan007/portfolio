@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arshal | Full-Stack Developer & GenAI Engineer</title>
+  <meta name="description"
+    content="Portfolio of Arshal, a Full-Stack Developer & GenAI Engineer specializing in React, FastAPI, LangChain, and Agentic AI systems.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="spring">
+  <!-- Drifting Backing Canvas (Tree leaves & Snow elements) -->
+  <canvas id="petal-canvas"></canvas>
+
+  <!-- Hover Pollen/Spark Cursor Trail Details -->
+  <canvas id="pollen-canvas"></canvas>
+
+  <!-- Navigation -->
+  <header class="navbar glass animate-fade-in">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <span class="floral-icon">🍃</span>
+        <span class="logo-text">Arshal.</span>
+      </a>
+
+      <nav class="nav-menu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#contact" class="nav-link btn-header">Get In Touch</a>
+      </nav>
+
+      <div class="nav-controls">
+        <!-- Interactive Season Switcher -->
+        <div class="season-selector glass">
+          <button class="season-btn active" data-season="spring" title="Spring 🌸">🌸</button>
+          <button class="season-btn" data-season="summer" title="Summer ☀️">☀️</button>
+          <button class="season-btn" data-season="autumn" title="Autumn 🍁">🍁</button>
+          <button class="season-btn" data-season="winter" title="Winter ❄️">❄️</button>
+        </div>
+        <!-- Wind Gust Trigger -->
+        <button id="wind-gust-btn" class="wind-toggle-btn" title="Simulate Wind Gust 💨">
+          <i class="fa-solid fa-wind"></i>
+          <span class="wind-indicator"></span>
+        </button>
+        <button id="mobile-toggle" class="mobile-toggle-btn" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg-blobs">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+      </div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="badge-bloom animate-pop-up">
+            <span class="badge-dot"></span>
+            GenAI & Full-Stack Specialist
+          </div>
+          <h1 class="hero-title animate-slide-up-heading">
+            Hi, I am <span class="highlight-text animate-glow">Arshal</span>
+          </h1>
+          <p class="hero-subtitle animate-fade-in-delayed">
+            I craft intelligent agentic architectures, automated data pipelines, and premium interface experiences that
+            bloom at the intersection of AI & Code.
+          </p>
+          <div class="hero-cta animate-fade-in-delayed-more">
+            <a href="#projects" class="btn btn-primary">
+              <span>View Projects</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <span>Let's Bloom Together</span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual animate-zoom-in">
+          <!-- Flower-shaped card/frame -->
+          <div class="floral-frame">
+            <div class="floral-petal petal-1"></div>
+            <div class="floral-petal petal-2"></div>
+            <div class="floral-petal petal-3"></div>
+            <div class="floral-petal petal-4"></div>
+            <div class="floral-core">
+              <i class="fa-solid fa-brain ai-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scrolldown">
+        <a href="#about">
+          <span class="scroll-text">Explore Garden</span>
+          <i class="fa-solid fa-chevron-down scroll-arrow"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section section-padding scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="subheading">the seed of passion</span>
+          <h2 class="section-title">Profile Summary</h2>
+          <span class="floral-divider">✿ ✿ &nbsp;❀&nbsp; ✿ ✿</span>
+        </div>
+
+        <div class="about-card glass double-border">
+          <div class="about-icon-wrapper">
+            <div class="about-icon-bg">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+          </div>
+          <div class="about-description">
+            <p>
+              I am a dedicated <strong>Full-Stack Developer & GenAI Engineer</strong> with hands-on experience building
+              robust React.js/FastAPI applications and sophisticated agentic AI systems using modern toolchains like
+              <strong>LangChain, LangGraph, and PydanticAI</strong>.
+            </p>
+            <p>
+              Having successfully shipped 3+ complex end-to-end projects and completed an internship automating real
+              enterprise workflows, my experience spans <strong>Retrieval-Augmented Generation (RAG) pipelines,
+                multi-agent orchestration, and computer-vision-based computer-vision-based auditing tools</strong>. I
+              strive to build beautiful, highly-functional software that solves real-world operational challenges.
+            </p>
+          </div>
+        </div>
+
+        <div class="education-grid">
+          <div class="section-header-small">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h3>Academic Background</h3>
+          </div>
+          <div class="education-timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-card glass scroll-reveal">
+              <div class="timeline-dot"></div>
+              <span class="timeline-date">2022 — 2026</span>
+              <h4>B.Tech, Computer Science (AI & ML)</h4>
+              <p class="institution">Noida Institute of Engineering & Technology, Greater Noida</p>
+              <div class="grade-badge">
+                <span class="badge-title">CGPA</span>
+                <span class="badge-value">7.29</span>
+              </div>
+            </div>
+            <!-- Timeline Item 2 -->
+            <div class="timeline-card glass scroll-reveal">
+              <div class="timeline-dot"></div>
+              <span class="timeline-date">2022</span>
+              <h4>Class XII (CBSE)</h4>
+              <p class="institution">Dewan Public School, Hapur</p>
+              <div class="grade-badge">
+                <span class="badge-title">Percentage</span>
+                <span class="badge-value">71%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience / Internship Section -->
+    <section id="experience" class="experience-section section-padding scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="subheading">Nurturing Experience</span>
+          <h2 class="section-title">Internship</h2>
+          <span class="floral-divider">✿ ✿ &nbsp;❀&nbsp; ✿ ✿</span>
+        </div>
+
+        <div class="experience-showcase glass double-border scroll-reveal">
+          <div class="exp-header">
+            <div class="exp-meta">
+              <h3>AI & Python Automation Engineer Intern</h3>
+              <p class="company">Sparkx Automations</p>
+            </div>
+            <div class="exp-duration">
+              <i class="fa-regular fa-calendar-days"></i>
+              <span>Nov 2025 — Feb 2026</span>
+            </div>
+          </div>
+
+          <ul class="exp-details">
+            <li>
+              <div class="detail-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="detail-text">
+                Built Python <strong>ETL scripts (Pandas, NumPy)</strong> to automate manual data workflows, cutting
+                reporting turnaround times from 2 days to under an hour.
+              </div>
+            </li>
+            <li>
+              <div class="detail-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="detail-text">
+                Designed and exposed <strong>FastAPI endpoints</strong> to trigger background Python scripts, letting
+                internal teams activate backend automated tasks on demand rather than manually.
+              </div>
+            </li>
+            <li>
+              <div class="detail-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="detail-text">
+                Developed a <strong>LangChain-based text classifier</strong> that auto-categorizes incoming client leads
+                from unstructured emails, optimizing sorting effort by approximately 50%.
+              </div>
+            </li>
+            <li>
+              <div class="detail-icon"><i class="fa-solid fa-circle-check"></i></div>
+              <div class="detail-text">
+                Restructured and fixed 3 legacy scripts failing in production by writing robust error handling and
+                introducing modularized architecture, enhancing general pipeline reliability.
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section section-padding scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="subheading">Blossoms of creation</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <span class="floral-divider">✿ ✿ &nbsp;❀&nbsp; ✿ ✿</span>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1: AccessLens -->
+          <div class="project-card glass double-border scroll-reveal">
+            <div class="card-glow"></div>
+            <div class="project-header">
+              <div class="folder-icon">
+                <i class="fa-solid fa-eye-slash-solid fa-magnifying-glass-chart"></i>
+              </div>
+              <div class="project-links">
+                <span class="link-placeholder" title="Working links loaded later"><i class="fa-solid fa-link-slash"></i>
+                  Links Later</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>AccessLens</h3>
+              <p class="project-subtitle">AI-Powered Accessibility Audit Tool</p>
+              <p class="description">
+                A web accessibility auditor combining WCAG 2.1 rule-based checks with a custom-trained Vision
+                Transformer (ViT-B/16), catching visual failures that typical rule-engines overlook. Features a FastAPI
+                backend with Selenium captures, Grad-CAM explainability, SQLite reports, and containerized Docker
+                scaling.
+              </p>
+            </div>
+            <div class="project-tech-tags">
+              <span class="tag">React</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">Python</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">ViT</span>
+              <span class="tag">Docker</span>
+            </div>
+          </div>
+
+          <!-- Project 2: DentDost -->
+          <div class="project-card glass double-border scroll-reveal">
+            <div class="card-glow"></div>
+            <div class="project-header">
+              <div class="folder-icon">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
+              <div class="project-links">
+                <span class="link-placeholder" title="Working links loaded later"><i class="fa-solid fa-link-slash"></i>
+                  Links Later</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>DentDost</h3>
+              <p class="project-subtitle">AI Scheduling Agent</p>
+              <p class="description">
+                An intelligent scheduling software using React + Vite on the client side with a real-time conversational
+                booking UI and custom hooks, streaming backend responses over REST. Orchestrated with a PydanticAI
+                multi-agent workflow that interprets natural language, resolves slots, and updates Google Calendars
+                dynamically.
+              </p>
+            </div>
+            <div class="project-tech-tags">
+              <span class="tag">React.js</span>
+              <span class="tag">Vite</span>
+              <span class="tag">FastAPI</span>
+              <span class="tag">PydanticAI</span>
+              <span class="tag">LangGraph</span>
+            </div>
+          </div>
+
+          <!-- Project 3: AI Resume Analyzer -->
+          <div class="project-card glass double-border scroll-reveal">
+            <div class="card-glow"></div>
+            <div class="project-header">
+              <div class="folder-icon">
+                <i class="fa-solid fa-file-invoice"></i>
+              </div>
+              <div class="project-links">
+                <span class="link-placeholder" title="Working links loaded later"><i class="fa-solid fa-link-slash"></i>
+                  Links Later</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3>AI Resume Analyzer</h3>
+              <p class="project-subtitle">Client-Side ATS Scoring Tool</p>
+              <p class="description">
+                A client-side Single Page Application leveraging React.js with drag-and-drop PDF upload and structured
+                JSON feedback. Utilizes LangChain to analyze ATS keyword density in-browser using a local privacy-first
+                Ollama LLM, with prompt tuning achieving a 35% increase in structured output accuracy.
+              </p>
+            </div>
+            <div class="project-tech-tags">
+              <span class="tag">React.js</span>
+              <span class="tag">Vite</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">Ollama</span>
+              <span class="tag">Local LLM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section (Flower Garden Layout) -->
+    <section id="skills" class="skills-section section-padding scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="subheading">Garden of Competence</span>
+          <h2 class="section-title">Skills & Toolkit</h2>
+          <span class="floral-divider">✿ ✿ &nbsp;❀&nbsp; ✿ ✿</span>
+        </div>
+
+        <div class="skills-container">
+          <!-- Category list -->
+          <div class="skills-category-selector">
+            <button class="skills-tab active" data-category="all">
+              <i class="fa-solid fa-bars"></i> All Skillsets
+            </button>
+            <button class="skills-tab" data-category="languages">
+              <i class="fa-solid fa-code"></i> Languages
+            </button>
+            <button class="skills-tab" data-category="frontend">
+              <i class="fa-solid fa-laptop-code"></i> Frontend & UI
+            </button>
+            <button class="skills-tab" data-category="backend-ai">
+              <i class="fa-solid fa-gears"></i> Backend & GenAI
+            </button>
+            <button class="skills-tab" data-category="db-tools">
+              <i class="fa-solid fa-database"></i> Databases & Infra
+            </button>
+          </div>
+
+          <!-- Skills Grid -->
+          <div class="skills-display-grid">
+            <!-- Languages -->
+            <div class="skill-bud show" data-type="languages">
+              <div class="bud-icon"><i class="fa-brands fa-python python-color"></i></div>
+              <div class="bud-info">
+                <h4>Python</h4>
+                <div class="bud-stem"><span class="bud-leaf width-90"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="languages">
+              <div class="bud-icon"><i class="fa-brands fa-js js-color"></i></div>
+              <div class="bud-info">
+                <h4>JavaScript</h4>
+                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="languages">
+              <div class="bud-icon"><i class="fa-brands fa-java java-color"></i></div>
+              <div class="bud-info">
+                <h4>Java</h4>
+                <div class="bud-stem"><span class="bud-leaf width-75"></span></div>
+              </div>
+            </div>
+
+            <!-- Frontend -->
+            <div class="skill-bud show" data-type="frontend">
+              <div class="bud-icon"><i class="fa-brands fa-react react-color"></i></div>
+              <div class="bud-info">
+                <h4>React.js</h4>
+                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="frontend">
+              <div class="bud-icon"><i class="fa-solid fa-bolt vite-color"></i></div>
+              <div class="bud-info">
+                <h4>Vite</h4>
+                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="frontend">
+              <div class="bud-icon"><i class="fa-solid fa-arrow-right-arrow-left api-color"></i></div>
+              <div class="bud-info">
+                <h4>REST / Streaming APIs</h4>
+                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="frontend">
+              <div class="bud-icon"><i class="fa-solid fa-key auth-color"></i></div>
+              <div class="bud-info">
+                <h4>JWT Authentication</h4>
+                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+              </div>
+            </div>
+
+            <!-- Backend & GenAI -->
+            <div class="skill-bud show" data-type="backend-ai">
+              <div class="bud-icon"><i class="fa-solid fa-cube fastapi-color"></i></div>
+              <div class="bud-info">
+                <h4>FastAPI</h4>
+                <div class="bud-stem"><span class="bud-leaf width-90"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="backend-ai">
+              <div class="bud-icon"><i class="fa-solid fa-link-slash langchain-color"></i></div>
+              <div class="bud-info">
+                <h4>LangChain</h4>
+                <div class="bud-stem"><span class="bud-leaf width-90"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="backend-ai">
+              <div class="bud-icon"><i class="fa-solid fa-diagram-project langgraph-color"></i></div>
+              <div class="bud-info">
+                <h4>LangGraph</h4>
+                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="backend-ai">
+              <div class="bud-icon"><i class="fa-solid fa-shield-halved pydantic-color"></i></div>
+              <div class="bud-info">
+                <h4>PydanticAI</h4>
+                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="backend-ai">
+              <div class="bud-icon"><i class="fa-solid fa-database rag-color"></i></div>
+              <div class="bud-info">
+                <h4>RAG Pipelines</h4>
+                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="backend-ai">
+              <div class="bud-icon"><i class="fa-solid fa-network-wired agent-color"></i></div>
+              <div class="bud-info">
+                <h4>Multi-Agent Systems</h4>
+                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
+              </div>
+            </div>
+
+            <!-- Databases & Tools -->
+            <div class="skill-bud show" data-type="db-tools">
+              <div class="bud-icon"><i class="fa-solid fa-leaf mongo-color"></i></div>
+              <div class="bud-info">
+                <h4>MongoDB</h4>
+                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="db-tools">
+              <div class="bud-icon"><i class="fa-solid fa-database mysql-color"></i></div>
+              <div class="bud-info">
+                <h4>MySQL</h4>
+                <div class="bud-stem"><span class="bud-leaf width-75"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="db-tools">
+              <div class="bud-icon"><i class="fa-solid fa-tree pinecone-color"></i></div>
+              <div class="bud-info">
+                <h4>Pinecone</h4>
+                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="db-tools">
+              <div class="bud-icon"><i class="fa-solid fa-magnifying-glass faiss-color"></i></div>
+              <div class="bud-info">
+                <h4>FAISS</h4>
+                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="db-tools">
+              <div class="bud-icon"><i class="fa-brands fa-git-alt git-color"></i></div>
+              <div class="bud-info">
+                <h4>Git</h4>
+                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
+              </div>
+            </div>
+            <div class="skill-bud show" data-type="db-tools">
+              <div class="bud-icon"><i class="fa-brands fa-docker docker-color"></i></div>
+              <div class="bud-info">
+                <h4>Docker</h4>
+                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements-section section-padding scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="subheading">Seeds that grew</span>
+          <h2 class="section-title">Achievements & Certifications</h2>
+          <span class="floral-divider">✿ ✿ &nbsp;❀&nbsp; ✿ ✿</span>
+        </div>
+
+        <div class="achievements-grid">
+          <!-- Achievement Card 1 -->
+          <div class="achievement-card glass double-border scroll-reveal">
+            <div class="ach-icon"><i class="fa-solid fa-trophy"></i></div>
+            <h3>DSA Accomplishments</h3>
+            <p>Solved 400+ problems on LeetCode, Codeforces, and HackerRank covering core algorithmic paradigms
+              including dynamic programming, graphing, tree traversals, and complex arrays.</p>
+          </div>
+          <!-- Achievement Card 2 -->
+          <div class="achievement-card glass double-border scroll-reveal">
+            <div class="ach-icon"><i class="fa-solid fa-certificate"></i></div>
+            <h3>14+ Tech Certifications</h3>
+            <p>Validated credentials in GenAI platforms, LLM systems development, production RAG pipelines, and Frontend
+              React development awarded by Coursera, DeepLearning.AI, and IBM.</p>
+          </div>
+          <!-- Achievement Card 3 -->
+          <div class="achievement-card glass double-border scroll-reveal">
+            <div class="ach-icon"><i class="fa-solid fa-medal"></i></div>
+            <h3>Coding Competitions</h3>
+            <p>Ranked in the top 10% in collegiate competitive programming events. Active contributor to open-source
+              initiatives with repository pinned items on GitHub.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section section-padding scroll-reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="subheading">Open the bud</span>
+          <h2 class="section-title">Get In Touch</h2>
+          <span class="floral-divider">✿ ✿ &nbsp;❀&nbsp; ✿ ✿</span>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Info Card -->
+          <div class="contact-info glass double-border scroll-reveal">
+            <h3>Let's Connect</h3>
+            <p class="contact-sub">Have a workflow to automate or an agentic architecture to build? Drop a message!</p>
+
+            <div class="contact-details-list">
+              <a href="mailto:arshal.real@outlook.com" class="contact-item">
+                <div class="ci-icon"><i class="fa-regular fa-envelope"></i></div>
+                <div class="ci-text">
+                  <span>Email</span>
+                  <strong>arshal.real@outlook.com</strong>
+                </div>
+              </a>
+
+              <a href="https://linkedin.com/in/arshalsaifi" target="_blank" rel="noopener noreferrer"
+                class="contact-item">
+                <div class="ci-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                <div class="ci-text">
+                  <span>LinkedIn</span>
+                  <strong>linkedin.com/in/arshalsaifi</strong>
+                </div>
+              </a>
+
+              <a href="https://github.com/MeowMan007" target="_blank" rel="noopener noreferrer" class="contact-item">
+                <div class="ci-icon"><i class="fa-brands fa-github"></i></div>
+                <div class="ci-text">
+                  <span>GitHub</span>
+                  <strong>github.com/MeowMan007</strong>
+                </div>
+              </a>
+
+              <div class="contact-item">
+                <div class="ci-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                <div class="ci-text">
+                  <span>Phone Number</span>
+                  <strong>+91 8630811634</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form Card -->
+          <div class="contact-form-wrapper glass double-border scroll-reveal">
+            <h3>Send Message</h3>
+            <form id="contact-form" onsubmit="event.preventDefault(); alert('Message sent successfully!');">
+              <div class="form-group">
+                <input type="text" id="name" required placeholder=" " class="form-input">
+                <label for="name" class="form-label">Full Name</label>
+                <span class="input-focus-leaf"></span>
+              </div>
+              <div class="form-group">
+                <input type="email" id="email" required placeholder=" " class="form-input">
+                <label for="email" class="form-label">Email Address</label>
+                <span class="input-focus-leaf"></span>
+              </div>
+              <div class="form-group">
+                <textarea id="message" required placeholder=" " rows="4" class="form-input"></textarea>
+                <label for="message" class="form-label">Message Details</label>
+                <span class="input-focus-leaf"></span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-submit">
+                <span>Spread the Pollen</span>
+                <i class="fa-solid fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer-section">
+    <div class="container footer-container">
+      <p class="copyright">🌸 Designed with floral harmony for <strong>Arshal</strong> &copy; 2026. All rights reserved.
+      </p>
+      <div class="footer-links">
+        <a href="https://github.com/MeowMan007" target="_blank" rel="noreferrer" title="Github"><i
+            class="fa-brands fa-github"></i></a>
+        <a href="https://linkedin.com/in/arshalsaifi" target="_blank" rel="noreferrer" title="LinkedIn"><i
+            class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:arshal.real@outlook.com" title="Email"><i class="fa-regular fa-envelope"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+
+</html>
