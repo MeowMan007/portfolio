@@ -2,9 +2,9 @@
    🌳 ARSHAL'S SEASONAL TREE & WIND INTERACTIVE SCRIPTS
    ========================================================================== */
 
-let activeSeason = 'spring';
-let currentWind = 0.3;
-let targetWind = 0.3;
+let activeSeason = 'summer'; // Summer (rich green theme) is the normal season/default!
+let currentWind = 0.35;
+let targetWind = 0.35;
 let isGusting = false;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,9 +58,16 @@ function initSeasonSelector() {
   const buttons = document.querySelectorAll('.season-btn');
   const body = document.body;
 
-  // Sync activeSeason with initial class from index.html (split by spaces for safety)
-  const currentClass = Array.from(body.classList).find(cls => ['spring', 'summer', 'autumn', 'winter'].includes(cls));
-  if (currentClass) activeSeason = currentClass;
+  // Set default active button to Summer (normal season)
+  buttons.forEach(b => {
+    b.classList.remove('active');
+    if (b.getAttribute('data-season') === 'summer') {
+      b.classList.add('active');
+    }
+  });
+  body.classList.remove('spring', 'summer', 'autumn', 'winter');
+  body.classList.add('summer');
+  activeSeason = 'summer';
 
   buttons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -69,7 +76,6 @@ function initSeasonSelector() {
 
       const season = btn.getAttribute('data-season');
 
-      // Remove old seasonal body classes
       body.classList.remove('spring', 'summer', 'autumn', 'winter');
       body.classList.add(season);
       activeSeason = season;
@@ -90,23 +96,26 @@ function initSeasonSelector() {
 /* --- Simulated Wind Gusts Trigger --- */
 function initWindGust() {
   const windBtn = document.getElementById('wind-gust-btn');
+  const treeContainer = document.querySelector('.tree-container');
   if (!windBtn) return;
 
   windBtn.addEventListener('click', () => {
-    if (isGusting) return; // Prevent overlapping triggers
+    if (isGusting) return;
     isGusting = true;
     windBtn.classList.add('active');
+    if (treeContainer) treeContainer.classList.add('windy');
 
     // Set target wind speed high
-    targetWind = 5.5;
+    targetWind = 5.8;
 
     // Decay wind back to default gradually
     setTimeout(() => {
-      targetWind = 0.3;
+      targetWind = 0.35;
       setTimeout(() => {
         isGusting = false;
         windBtn.classList.remove('active');
-      }, 2500); // Wait for speed interpolation to normalize
+        if (treeContainer) treeContainer.classList.remove('windy');
+      }, 2500);
     }, 2000); // Gust duration
   });
 }
@@ -187,54 +196,45 @@ function initLeafCanvas() {
   class Particle {
     constructor() {
       this.reset();
-      // Distribute vertically on page load so they don't all start up top
       this.y = Math.random() * height;
     }
 
     reset() {
-      // Spawn at top, or far left if wind is strong
       if (currentWind > 2) {
         this.x = Math.random() * (width * 0.4) - 50;
         this.y = Math.random() * height;
       } else {
         this.x = Math.random() * width;
-        this.y = -30;
+        this.y = -35;
       }
 
-      this.size = Math.random() * 8 + 6; // base size
-      this.speedY = Math.random() * 0.7 + 0.3; // natural fall
-      this.speedX = Math.random() * 0.3 - 0.15; // natural drift
+      this.size = Math.random() * 7 + 6;
+      this.speedY = Math.random() * 0.65 + 0.35;
+      this.speedX = Math.random() * 0.3 - 0.15;
       this.angle = Math.random() * 360;
-      this.spin = Math.random() * 1.2 - 0.6; // tumble
-      this.opacity = Math.random() * 0.4 + 0.25; // soft background opacity
+      this.spin = Math.random() * 1.0 - 0.5;
+      this.opacity = Math.random() * 0.35 + 0.22;
       this.swaySpeed = Math.random() * 0.015 + 0.005;
       this.swayOffset = Math.random() * Math.PI * 2;
     }
 
     update() {
-      // Wind speed interpolation
-      currentWind += (targetWind - currentWind) * 0.035;
+      currentWind += (targetWind - currentWind) * 0.04;
 
-      // Normal vertical progress
       this.y += this.speedY;
-
-      // Sideways sway + global wind
       this.swayOffset += this.swaySpeed;
 
-      // Accelerate horizontal force when wind is active
       const gustEffect = (currentWind > 1) ? (currentWind * (0.8 + Math.random() * 0.4)) : currentWind;
       this.x += this.speedX + Math.sin(this.swayOffset) * 0.35 + gustEffect;
 
-      // Speed up spin and descend slightly in wind
       if (currentWind > 1.5) {
-        this.angle += this.spin * 3.5;
-        this.y += currentWind * 0.15;
+        this.angle += this.spin * 3.2;
+        this.y += currentWind * 0.12;
       } else {
         this.angle += this.spin;
       }
 
-      // Reset when off canvas bounds
-      if (this.y > height + 30 || this.x < -30 || this.x > width + 50) {
+      if (this.y > height + 35 || this.x < -35 || this.x > width + 50) {
         this.reset();
       }
     }
@@ -243,68 +243,65 @@ function initLeafCanvas() {
       ctx.save();
       ctx.translate(this.x, this.y);
       ctx.rotate(this.angle * Math.PI / 180);
-
       ctx.lineWidth = 0.5;
 
       if (activeSeason === 'spring') {
-        // Cherry Blossoms (pink petals)
-        ctx.fillStyle = `rgba(226, 106, 135, ${this.opacity})`;
+        // Soft pale green spring leaf oval shape
+        ctx.fillStyle = `rgba(111, 142, 125, ${this.opacity})`;
         ctx.strokeStyle = `rgba(255, 255, 255, ${this.opacity * 0.5})`;
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.bezierCurveTo(-this.size, -this.size / 2, -this.size / 2, -this.size * 1.5, 0, -this.size * 2);
-        ctx.bezierCurveTo(this.size / 2, -this.size * 1.5, this.size, -this.size / 2, 0, 0);
+        ctx.bezierCurveTo(-this.size * 0.7, -this.size * 0.5, -this.size * 0.4, -this.size * 1.5, 0, -this.size * 1.8);
+        ctx.bezierCurveTo(this.size * 0.4, -this.size * 1.5, this.size * 0.7, -this.size * 0.5, 0, 0);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
 
       } else if (activeSeason === 'summer') {
-        // Rich Emerald Oak/Elm Leaves
+        // Rich Emerald Green Ribbed Oak/Elm Leaf
         ctx.fillStyle = `rgba(46, 204, 113, ${this.opacity})`;
-        ctx.strokeStyle = `rgba(241, 196, 15, ${this.opacity * 0.35})`; // gold vein tint
+        ctx.strokeStyle = `rgba(241, 196, 15, ${this.opacity * 0.3})`;
         ctx.beginPath();
-        // Pointed leaf path
         ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(-this.size * 0.8, -this.size * 0.7, 0, -this.size * 1.7);
-        ctx.quadraticCurveTo(this.size * 0.8, -this.size * 0.7, 0, 0);
+        // Stylized pointed leaf
+        ctx.quadraticCurveTo(-this.size * 0.9, -this.size * 0.8, 0, -this.size * 1.8);
+        ctx.quadraticCurveTo(this.size * 0.9, -this.size * 0.8, 0, 0);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
 
       } else if (activeSeason === 'autumn') {
-        // Maple / Broad Amber & Bronze Leaves
+        // Maple / Orange Amber Oak Leaf
         ctx.fillStyle = `rgba(230, 126, 34, ${this.opacity})`;
-        ctx.strokeStyle = `rgba(192, 57, 43, ${this.opacity * 0.5})`; // crimson border tint
+        ctx.strokeStyle = `rgba(192, 57, 43, ${this.opacity * 0.5})`;
         ctx.beginPath();
-        // Maple-ish look: three-pointed geometry
         ctx.moveTo(0, 0);
-        ctx.lineTo(-this.size * 0.6, -this.size * 0.4);
-        ctx.lineTo(-this.size * 0.3, -this.size * 0.8);
-        ctx.lineTo(-this.size * 0.7, -this.size * 1.1);
-        ctx.lineTo(0, -this.size * 1.8); // top tip
-        ctx.lineTo(this.size * 0.7, -this.size * 1.1);
-        ctx.lineTo(this.size * 0.3, -this.size * 0.8);
-        ctx.lineTo(this.size * 0.6, -this.size * 0.4);
+        ctx.lineTo(-this.size * 0.5, -this.size * 0.3);
+        ctx.lineTo(-this.size * 0.25, -this.size * 0.7);
+        ctx.lineTo(-this.size * 0.65, -this.size * 1.0);
+        ctx.lineTo(0, -this.size * 1.7);
+        ctx.lineTo(this.size * 0.65, -this.size * 1.0);
+        ctx.lineTo(this.size * 0.25, -this.size * 0.7);
+        ctx.lineTo(this.size * 0.5, -this.size * 0.3);
         ctx.closePath();
         ctx.fill();
         ctx.stroke();
 
       } else if (activeSeason === 'winter') {
-        // Falling snow crystals (soft circular outlines/dots)
+        // Ice crystal / snowflake
         ctx.fillStyle = `rgba(236, 240, 241, ${this.opacity})`;
         ctx.shadowBlur = 3;
         ctx.shadowColor = `rgba(255, 255, 255, ${this.opacity})`;
         ctx.beginPath();
-        ctx.arc(0, 0, this.size * 0.4, 0, Math.PI * 2);
+        ctx.arc(0, 0, this.size * 0.35, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        ctx.shadowBlur = 0;
       }
 
       ctx.restore();
     }
   }
 
-  // Populate floating elements
   let maxParticles = Math.min(45, Math.floor(width / 32));
   for (let i = 0; i < maxParticles; i++) {
     particles.push(new Particle());
@@ -322,7 +319,7 @@ function initLeafCanvas() {
   animate();
 }
 
-/* --- Interactive Pollen/Crystal Trail Cursor Logic --- */
+/* --- Interactive Sunshine cursor trail --- */
 function initPollenTrail() {
   const canvas = document.getElementById('pollen-canvas');
   if (!canvas) return;
@@ -347,15 +344,15 @@ function initPollenTrail() {
       this.life = 1.0;
       this.decay = Math.random() * 0.035 + 0.015;
 
-      // Determine colors based on active theme
+      // Setup golden trail spore tones based on season
       if (activeSeason === 'spring') {
-        this.color = { r: 247, g: 202, b: 201 }; // pale pink
+        this.color = { r: 143, g: 188, b: 143 }; // soft green spark
       } else if (activeSeason === 'summer') {
-        this.color = { r: 241, g: 196, b: 15 }; // summer gold
+        this.color = { r: 241, g: 196, b: 15 }; // golden sun spark
       } else if (activeSeason === 'autumn') {
-        this.color = { r: 230, g: 126, b: 34 }; // bronze orange
+        this.color = { r: 230, g: 126, b: 34 }; // amber embers
       } else if (activeSeason === 'winter') {
-        this.color = { r: 82, g: 179, b: 217 }; // ice blue
+        this.color = { r: 82, g: 179, b: 217 }; // ice crystal spark
       }
     }
 

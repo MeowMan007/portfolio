@@ -530,67 +530,260 @@ h4 {
   color: var(--accent);
 }
 
-/* Floral Graphic Element in Hero */
+/* Tree and Sunshine Graphic Elements in Hero */
 .hero-visual {
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  width: 100%;
 }
 
-.floral-frame {
+.tree-container {
   position: relative;
-  width: 280px;
-  height: 280px;
+  width: 320px;
+  height: 400px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow: visible;
 }
 
-.floral-petal {
+/* Sunbeams / Komorebi overlay */
+.sun-rays {
   position: absolute;
-  width: 140px;
-  height: 140px;
-  background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.2), rgba(var(--accent-rgb), 0.05));
-  border: 1.5px dashed var(--accent);
-  border-radius: 80% 0px 80% 0px;
-  transform-origin: bottom right;
-  animation: rotate-petal 20s infinite linear;
+  top: -15%;
+  left: -15%;
+  width: 130%;
+  height: 130%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
 }
 
-.petal-1 {
-  transform: rotate(0deg) translate(-70px, -70px);
+.ray {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 200%;
+  background: linear-gradient(to bottom, rgba(241, 196, 15, 0.12) 0%, rgba(241, 196, 15, 0) 70%);
+  transform: rotate(-35deg) translate(-40px, -90px);
+  transform-origin: top left;
+  filter: blur(12px);
+  opacity: 0.6;
+  animation: ray-shine 10s ease-in-out infinite alternate;
 }
 
-.petal-2 {
-  transform: rotate(90deg) translate(-70px, -70px);
-  animation-delay: -5s;
+.ray-1 {
+  left: 15%;
+  animation-delay: 0s;
 }
 
-.petal-3 {
-  transform: rotate(180deg) translate(-70px, -70px);
-  animation-delay: -10s;
+.ray-2 {
+  left: 45%;
+  animation-delay: -3s;
+  width: 75px;
+  opacity: 0.45;
 }
 
-.petal-4 {
-  transform: rotate(270deg) translate(-70px, -70px);
-  animation-delay: -15s;
+.ray-3 {
+  left: 75%;
+  animation-delay: -6s;
+  width: 45px;
+  opacity: 0.55;
 }
 
-.floral-core {
-  width: 100px;
-  height: 100px;
+@keyframes ray-shine {
+  0% {
+    opacity: 0.25;
+    transform: rotate(-37deg) skewX(-4deg) scaleX(0.9);
+  }
+
+  105% {
+    opacity: 0.75;
+    transform: rotate(-33deg) skewX(4deg) scaleX(1.1);
+  }
+}
+
+/* Stylized Vector SVG Tree */
+.svg-tree {
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom center;
+  animation: gentle-sway-trunk 8s ease-in-out infinite alternate;
+  z-index: 3;
+}
+
+.tree-trunk {
+  transform-origin: 150px 380px;
+}
+
+.tree-branch {
+  transition: transform 0.5s ease;
+}
+
+.branch-left {
+  transform-origin: 145px 210px;
+  animation: gentle-sway-left 6s ease-in-out infinite alternate;
+}
+
+.branch-right {
+  transform-origin: 155px 200px;
+  animation: gentle-sway-right 7s ease-in-out infinite alternate;
+}
+
+.branch-top {
+  transform-origin: 150px 180px;
+  animation: gentle-sway-top 8s ease-in-out infinite alternate;
+}
+
+.hanging-leaf {
+  transition: transform 0.5s ease;
+}
+
+/* Gentle Sways */
+@keyframes gentle-sway-trunk {
+  0% {
+    transform: rotate(-1deg);
+  }
+
+  100% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes gentle-sway-left {
+  0% {
+    transform: rotate(-2.5deg) scale(0.98);
+  }
+
+  100% {
+    transform: rotate(2deg) scale(1.02);
+  }
+}
+
+@keyframes gentle-sway-right {
+  0% {
+    transform: rotate(-1.5deg) scale(1.02);
+  }
+
+  100% {
+    transform: rotate(3deg) scale(0.98);
+  }
+}
+
+@keyframes gentle-sway-top {
+  0% {
+    transform: rotate(-2deg);
+  }
+
+  100% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Windy Active Sways (Wind Gusts) */
+.tree-container.windy .svg-tree {
+  animation: windy-sway-trunk 1.5s ease-in-out infinite alternate;
+}
+
+.tree-container.windy .branch-left {
+  animation: windy-sway-left 1.1s ease-in-out infinite alternate;
+}
+
+.tree-container.windy .branch-right {
+  animation: windy-sway-right 1.2s ease-in-out infinite alternate;
+}
+
+.tree-container.windy .branch-top {
+  animation: windy-sway-top 1.3s ease-in-out infinite alternate;
+}
+
+@keyframes windy-sway-trunk {
+  0% {
+    transform: rotate(-3.5deg);
+  }
+
+  100% {
+    transform: rotate(3.5deg);
+  }
+}
+
+@keyframes windy-sway-left {
+  0% {
+    transform: rotate(-12deg) skewX(-2deg);
+  }
+
+  100% {
+    transform: rotate(5deg) skewX(2deg);
+  }
+}
+
+@keyframes windy-sway-right {
+  0% {
+    transform: rotate(-10deg) skewX(2deg);
+  }
+
+  100% {
+    transform: rotate(14deg) skewX(-2deg);
+  }
+}
+
+@keyframes windy-sway-top {
+  0% {
+    transform: rotate(-7deg);
+  }
+
+  100% {
+    transform: rotate(7deg);
+  }
+}
+
+/* Profile leaf ring replacing flower core */
+.profile-leaf-ring {
+  position: absolute;
+  width: 90px;
+  height: 90px;
   background: var(--bg-secondary);
-  border: 2px solid var(--accent-secondary);
+  border: 2px solid var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.2rem;
-  color: var(--accent);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  font-size: 2rem;
+  color: var(--accent-secondary);
+  box-shadow: var(--card-shadow);
   z-index: 5;
-  animation: heartbeat-core 4s infinite ease-in-out;
+  animation: leaf-ring-pulse 5s infinite ease-in-out;
+}
+
+@keyframes leaf-ring-pulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: var(--card-shadow);
+  }
+
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 10px 25px rgba(var(--accent-rgb), 0.22);
+  }
+}
+
+.tree-center-icon {
+  animation: float-leaf 4s ease-in-out infinite alternate;
+}
+
+@keyframes float-leaf {
+  0% {
+    transform: translateY(0) rotate(-10deg);
+  }
+
+  100% {
+    transform: translateY(-4px) rotate(15deg);
+  }
 }
 
 .hero-scrolldown {
