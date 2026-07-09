@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSeasonScrollSpy();
   initScrollWindBoost();
   initNightMode();
+  initTreeProgressCanvas();
 });
 
 /* --- Navbar Interactivity --- */
@@ -194,19 +195,36 @@ function initLeafCanvas() {
     }
 
     reset() {
-      // Spawn on correct side based on wind direction
-      if (currentWind > 1.8) {
-        // Wind blowing right, spawn on the left edge
-        this.x = Math.random() * (width * 0.3) - 50;
-        this.y = Math.random() * height;
-      } else if (currentWind < -1.8) {
-        // Wind blowing left, spawn on the right edge
-        this.x = width - (Math.random() * (width * 0.3)) + 50;
-        this.y = Math.random() * height;
+      // 65% chance to spawn leaves directly from the tree branches!
+      const treeEl = document.querySelector('.global-tree-backdrop');
+      const rect = treeEl ? treeEl.getBoundingClientRect() : null;
+
+      if (rect && Math.random() < 0.65 && window.innerWidth > 992) {
+        // Active node spots matching the tree.png coordinates
+        const nodes = [
+          { px: 0.50, py: 0.82 }, // roots
+          { px: 0.48, py: 0.65 }, // trunk
+          { px: 0.44, py: 0.49 }, // center bifurcation
+          { px: 0.32, py: 0.32 }, // upper left
+          { px: 0.55, py: 0.18 }  // crown
+        ];
+        const chosenNode = nodes[Math.floor(Math.random() * nodes.length)];
+
+        // Spawn around the branch coordinate
+        this.x = rect.left + (chosenNode.px * rect.width) + (Math.random() * 60 - 30);
+        this.y = rect.top + (chosenNode.py * rect.height) + (Math.random() * 40 - 20);
       } else {
-        // Default floating down
-        this.x = Math.random() * width;
-        this.y = -35;
+        // Spawn on boundaries based on wind direction
+        if (currentWind > 1.8) {
+          this.x = Math.random() * (width * 0.3) - 50;
+          this.y = Math.random() * height;
+        } else if (currentWind < -1.8) {
+          this.x = width - (Math.random() * (width * 0.3)) + 50;
+          this.y = Math.random() * height;
+        } else {
+          this.x = Math.random() * width;
+          this.y = -35;
+        }
       }
 
       this.size = Math.random() * 8 + 8; // Slightly larger for detail
@@ -562,6 +580,184 @@ function initNightMode() {
       localStorage.setItem('theme-dark', 'false');
     }
   });
+}
+
+/* --- Interactive Tree Growth & Progress Canvas --- */
+function initTreeProgressCanvas() {
+  const canvas = document.getElementById('tree-progress-canvas');
+  const backdrop = document.querySelector('.global-tree-backdrop');
+  if (!canvas || !backdrop) return;
+
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = backdrop.clientWidth;
+  let height = canvas.height = backdrop.clientHeight;
+
+  // Active nodes layout mapping coordinates (relative px, py)
+  const nodes = [
+    { px: 0.50, py: 0.82, exploded: false, color: '#00ED64', label: 'Start 🌸' },
+    { px: 0.48, py: 0.65, exploded: false, color: '#FFD54F', label: 'Grow ☀️' },
+    { px: 0.44, py: 0.49, exploded: false, color: '#FF7043', label: 'Evolve 🍂' },
+    { px: 0.32, py: 0.32, exploded: false, color: '#4FC3F7', label: 'Expand ❄️' },
+    { px: 0.55, py: 0.18, exploded: false, color: '#E8F5E9', label: 'Bloom 🍃' }
+  ];
+
+  let sparkParticles = [];
+  let pulseAngle = 0;
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = backdrop.clientWidth;
+    height = canvas.height = backdrop.clientHeight;
+  });
+
+  function triggerSparkBurst(x, y, color) {
+    for (let i = 0; i < 24; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 4 + 1.5;
+      sparkParticles.push({
+        x: x,
+        y: y,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 1.0, // slight rising drift
+        size: Math.random() * 3 + 1.2,
+        color: color,
+        alpha: 1.0,
+        decay: Math.random() * 0.02 + 0.015
+      });
+    }
+  }
+
+  // Animation Loop
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+
+    // Calculate Scroll Progress
+    const scrollY = window.scrollY;
+    const totalScrollRange = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = totalScrollRange > 0 ? Math.max(0, Math.min(1, scrollY / totalScrollRange)) : 0;
+
+    pulseAngle += 0.05;
+
+    // 1. Draw glowing sap stream climb
+    if (progress > 0.01) {
+      ctx.beginPath();
+      const startX = nodes[0].px * width;
+      const startY = nodes[0].py * height;
+      ctx.moveTo(startX, startY);
+
+      const segmentCount = nodes.length - 1;
+      const progressScaled = progress * segmentCount;
+      const activeSeg = Math.floor(progressScaled);
+      const segFraction = progressScaled - activeSeg;
+
+      for (let i = 0; i < segmentCount; i++) {
+        const x1 = nodes[i].px * width;
+        const y1 = nodes[i].py * height;
+        const x2 = nodes[i + 1].px * width;
+        const y2 = nodes[i + 1].py * height;
+
+        if (i < activeSeg) {
+          ctx.lineTo(x2, y2);
+        } else if (i === activeSeg) {
+          const curX = x1 + (x2 - x1) * segFraction;
+          const curY = y1 + (y2 - y1) * segFraction;
+          ctx.lineTo(curX, curY);
+          break;
+        }
+      }
+
+      ctx.strokeStyle = document.body.classList.contains('dark-mode') ? 'rgba(0, 237, 100, 0.78)' : 'rgba(0, 104, 74, 0.65)';
+      ctx.lineWidth = 3.5;
+      ctx.shadowBlur = 8;
+      ctx.shadowColor = ctx.strokeStyle;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+    }
+
+    // 2. Draw Nodes
+    const activeSegIndex = Math.round(progress * (nodes.length - 1));
+
+    nodes.forEach((node, idx) => {
+      const nx = node.px * width;
+      const ny = node.py * height;
+      const isActive = idx <= activeSegIndex;
+
+      // Handle spark explosion on scroll threshold crossing
+      if (isActive && !node.exploded) {
+        node.exploded = true;
+        triggerSparkBurst(nx, ny, node.color);
+      } else if (!isActive && node.exploded) {
+        // Reset exploded flag if we scroll back up past the node
+        node.exploded = false;
+      }
+
+      // Draw node backing glowing pulsing circle
+      if (isActive) {
+        const pulseRadius = 5.5 + Math.sin(pulseAngle) * 2;
+        ctx.fillStyle = node.color;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = node.color;
+
+        ctx.beginPath();
+        ctx.arc(nx, ny, pulseRadius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      } else {
+        // Inactive sleeping bud node
+        ctx.fillStyle = document.body.classList.contains('dark-mode') ? 'rgba(255, 255, 255, 0.25)' : 'rgba(0, 30, 43, 0.2)';
+        ctx.beginPath();
+        ctx.arc(nx, ny, 3.5, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    // 3. Draw and Update Active Sparks particles
+    for (let i = sparkParticles.length - 1; i >= 0; i--) {
+      const p = sparkParticles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0) {
+        sparkParticles.splice(i, 1);
+      } else {
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 6;
+        ctx.shadowColor = p.color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    // 4. Update the tree image transforms (scale/growth and sway) based on progress
+    const treeImg = document.querySelector('.sapling-tree-img');
+    if (treeImg) {
+      let scale = 0.65 + (progress * 0.45); // sapling -> mature tree
+      if (progress > 0.8) {
+        scale = 1.10 - ((progress - 0.8) * 0.4); // Winter contraction
+      }
+      const sway = Math.sin(progress * Math.PI * 3.5) * 1.5; // slight rotation bend
+      treeImg.style.transform = `scale(${scale}) rotate(${sway}deg)`;
+
+      // Update filters matching scrolling seasons
+      if (document.body.classList.contains('season-spring')) {
+        treeImg.style.filter = 'drop-shadow(0 15px 35px rgba(0, 237, 100, 0.16)) saturate(1.15)';
+      } else if (document.body.classList.contains('season-summer')) {
+        treeImg.style.filter = 'drop-shadow(0 15px 35px rgba(39, 174, 96, 0.22)) saturate(1.4) brightness(1.05)';
+      } else if (document.body.classList.contains('season-autumn')) {
+        treeImg.style.filter = 'drop-shadow(0 15px 35px rgba(211, 84, 0, 0.22)) sepia(0.3) saturate(1.5) hue-rotate(-20deg)';
+      } else if (document.body.classList.contains('season-winter')) {
+        treeImg.style.filter = 'drop-shadow(0 15px 35px rgba(41, 128, 185, 0.18)) saturate(0.3) brightness(1.22) contrast(0.9)';
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
 }
 
 
