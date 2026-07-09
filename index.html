@@ -474,146 +474,40 @@
             </button>
           </div>
 
-          <!-- Skills Grid -->
-          <div class="skills-display-grid">
-            <!-- Languages -->
-            <div class="skill-bud show" data-type="languages">
-              <div class="bud-icon"><i class="fa-brands fa-python python-color"></i></div>
-              <div class="bud-info">
-                <h4>Python</h4>
-                <div class="bud-stem"><span class="bud-leaf width-90"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="languages">
-              <div class="bud-icon"><i class="fa-brands fa-js js-color"></i></div>
-              <div class="bud-info">
-                <h4>JavaScript</h4>
-                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="languages">
-              <div class="bud-icon"><i class="fa-brands fa-java java-color"></i></div>
-              <div class="bud-info">
-                <h4>Java</h4>
-                <div class="bud-stem"><span class="bud-leaf width-75"></span></div>
+          <!-- Interactive Skills circular Orbit Layout -->
+          <div class="skills-interactive-layout glass double-border">
+            <!-- Left: Orbital Skills Wheel -->
+            <div class="skills-wheel-column">
+              <div class="skills-wheel" id="skills-circular-wheel">
+                <!-- Center Hub -->
+                <div class="skills-wheel-hub">
+                  <i class="fa-solid fa-seedling"></i>
+                </div>
+                <!-- Orbiter nodes dynamically populated by script.js -->
               </div>
             </div>
 
-            <!-- Frontend -->
-            <div class="skill-bud show" data-type="frontend">
-              <div class="bud-icon"><i class="fa-brands fa-react react-color"></i></div>
-              <div class="bud-info">
-                <h4>React.js</h4>
-                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="frontend">
-              <div class="bud-icon"><i class="fa-solid fa-bolt vite-color"></i></div>
-              <div class="bud-info">
-                <h4>Vite</h4>
-                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="frontend">
-              <div class="bud-icon"><i class="fa-solid fa-arrow-right-arrow-left api-color"></i></div>
-              <div class="bud-info">
-                <h4>REST / Streaming APIs</h4>
-                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="frontend">
-              <div class="bud-icon"><i class="fa-solid fa-key auth-color"></i></div>
-              <div class="bud-info">
-                <h4>JWT Authentication</h4>
-                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
-              </div>
-            </div>
-
-            <!-- Backend & GenAI -->
-            <div class="skill-bud show" data-type="backend-ai">
-              <div class="bud-icon"><i class="fa-solid fa-cube fastapi-color"></i></div>
-              <div class="bud-info">
-                <h4>FastAPI</h4>
-                <div class="bud-stem"><span class="bud-leaf width-90"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="backend-ai">
-              <div class="bud-icon"><i class="fa-solid fa-link-slash langchain-color"></i></div>
-              <div class="bud-info">
-                <h4>LangChain</h4>
-                <div class="bud-stem"><span class="bud-leaf width-90"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="backend-ai">
-              <div class="bud-icon"><i class="fa-solid fa-diagram-project langgraph-color"></i></div>
-              <div class="bud-info">
-                <h4>LangGraph</h4>
-                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="backend-ai">
-              <div class="bud-icon"><i class="fa-solid fa-shield-halved pydantic-color"></i></div>
-              <div class="bud-info">
-                <h4>PydanticAI</h4>
-                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="backend-ai">
-              <div class="bud-icon"><i class="fa-solid fa-database rag-color"></i></div>
-              <div class="bud-info">
-                <h4>RAG Pipelines</h4>
-                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="backend-ai">
-              <div class="bud-icon"><i class="fa-solid fa-network-wired agent-color"></i></div>
-              <div class="bud-info">
-                <h4>Multi-Agent Systems</h4>
-                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
-              </div>
-            </div>
-
-            <!-- Databases & Tools -->
-            <div class="skill-bud show" data-type="db-tools">
-              <div class="bud-icon"><i class="fa-solid fa-leaf mongo-color"></i></div>
-              <div class="bud-info">
-                <h4>MongoDB</h4>
-                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="db-tools">
-              <div class="bud-icon"><i class="fa-solid fa-database mysql-color"></i></div>
-              <div class="bud-info">
-                <h4>MySQL</h4>
-                <div class="bud-stem"><span class="bud-leaf width-75"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="db-tools">
-              <div class="bud-icon"><i class="fa-solid fa-tree pinecone-color"></i></div>
-              <div class="bud-info">
-                <h4>Pinecone</h4>
-                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="db-tools">
-              <div class="bud-icon"><i class="fa-solid fa-magnifying-glass faiss-color"></i></div>
-              <div class="bud-info">
-                <h4>FAISS</h4>
-                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="db-tools">
-              <div class="bud-icon"><i class="fa-brands fa-git-alt git-color"></i></div>
-              <div class="bud-info">
-                <h4>Git</h4>
-                <div class="bud-stem"><span class="bud-leaf width-85"></span></div>
-              </div>
-            </div>
-            <div class="skill-bud show" data-type="db-tools">
-              <div class="bud-icon"><i class="fa-brands fa-docker docker-color"></i></div>
-              <div class="bud-info">
-                <h4>Docker</h4>
-                <div class="bud-stem"><span class="bud-leaf width-80"></span></div>
+            <!-- Right: Interactive Detail Card -->
+            <div class="skills-details-column">
+              <div class="skill-detail-card" id="skill-explanation-card">
+                <div class="skill-detail-empty">
+                  <i class="fa-solid fa-hand-pointer animate-pulse-hand"></i>
+                  <h3>Click or Hover a Skill</h3>
+                  <p>Choose any node in the orbiting skills wheel to inspect Arshal's project applications and
+                    complexity depth.</p>
+                </div>
+                <div class="skill-detail-content hidden">
+                  <div class="skill-detail-header">
+                    <div class="skill-detail-icon" id="skill-detail-icon"><i class="fa-brands fa-python"></i></div>
+                    <div class="skill-detail-meta">
+                      <h3 id="skill-detail-name">Python</h3>
+                      <div class="skill-detail-bar"><span id="skill-detail-fill" style="width: 0%;"></span></div>
+                    </div>
+                  </div>
+                  <hr class="skill-detail-divider">
+                  <h4>Key Accomplishments & Integration:</h4>
+                  <p id="skill-detail-desc"></p>
+                </div>
               </div>
             </div>
           </div>

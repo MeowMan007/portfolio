@@ -114,30 +114,261 @@ function initAutomaticWind() {
   }, 18000);
 }
 
-/* --- Skills Garden Filter --- */
+/* --- Skills Orbiting Wheel & Tab Filter --- */
 function initSkillsFilter() {
   const tabs = document.querySelectorAll('.skills-tab');
-  const buds = document.querySelectorAll('.skill-bud');
+  const wheelContainer = document.getElementById('skills-circular-wheel');
+  const detailCard = document.getElementById('skill-explanation-card');
+  const hub = document.querySelector('.skills-wheel-hub');
 
+  if (!wheelContainer || !detailCard) return;
+
+  const emptyState = detailCard.querySelector('.skill-detail-empty');
+  const contentState = detailCard.querySelector('.skill-detail-content');
+  const detailIcon = document.getElementById('skill-detail-icon');
+  const detailName = document.getElementById('skill-detail-name');
+  const detailFill = document.getElementById('skill-detail-fill');
+  const detailDesc = document.getElementById('skill-detail-desc');
+
+  // Hardcoded skills portfolio exposure data
+  const skillsData = {
+    // Languages
+    'python': {
+      name: 'Python',
+      icon: 'fa-brands fa-python',
+      progress: '90%',
+      type: 'languages',
+      desc: 'Architected multiple LinkedIn OSINT automated bots with high-throughput search and scrapers. Deployed Vision Transformer (ViT-B/16) models on Colab with Cloudflare Tunnel APIs.'
+    },
+    'javascript': {
+      name: 'JavaScript',
+      icon: 'fa-brands fa-js',
+      progress: '85%',
+      type: 'languages',
+      desc: 'Structured complex client canvas renderers (pollen/wind trails, leaf particles physics), configured REST API data flow orchestration, and managed reactive UI states.'
+    },
+    'java': {
+      name: 'Java',
+      icon: 'fa-brands fa-java',
+      progress: '75%',
+      type: 'languages',
+      desc: 'Engineered solid core backend algorithms, object-oriented custom workflows, robust multi-threading systems, and collegiate competitive programming structures.'
+    },
+    // Frontend
+    'react.js': {
+      name: 'React.js',
+      icon: 'fa-brands fa-react',
+      progress: '85%',
+      type: 'frontend',
+      desc: 'Built custom React hook engines, context providers, responsive dashboards, and premium custom SVG animations for production-level HR scraping projects.'
+    },
+    'vite': {
+      name: 'Vite',
+      icon: 'fa-solid fa-bolt',
+      progress: '80%',
+      type: 'frontend',
+      desc: 'Set up lightning-fast SPA builds, hot-reloading asset pipelines, and configured efficient dev servers for access auditor dashboards.'
+    },
+    'rest / streaming apis': {
+      name: 'REST / Streaming APIs',
+      icon: 'fa-solid fa-arrow-right-arrow-left',
+      progress: '85%',
+      type: 'frontend',
+      desc: 'Implemented real-time Server-Sent Events (SSE) stream channels to pipe token-by-token GenAI humanized outputs to client UIs without lag.'
+    },
+    'jwt authentication': {
+      name: 'JWT Authentication',
+      icon: 'fa-solid fa-key',
+      progress: '80%',
+      type: 'frontend',
+      desc: 'Authored stateful JSON Web Token authorization layers, secure login cookie middleware, and automatic token refreshes in app routing.'
+    },
+    // Backend & GenAI
+    'fastapi': {
+      name: 'FastAPI',
+      icon: 'fa-solid fa-cube',
+      progress: '90%',
+      type: 'backend-ai',
+      desc: 'Designed asynchronous high-concurrency API endpoints, type validation layers using Pydantic, rate-limiting, and integrated CORS mechanisms.'
+    },
+    'langchain': {
+      name: 'LangChain',
+      icon: 'fa-solid fa-link-slash',
+      progress: '90%',
+      type: 'backend-ai',
+      desc: 'Constructed custom document loaders, chunking splitters, conversational memory buffers, and context retrieval chains for enterprise PDF analytics.'
+    },
+    'langgraph': {
+      name: 'LangGraph',
+      icon: 'fa-solid fa-diagram-project',
+      progress: '85%',
+      type: 'backend-ai',
+      desc: 'Orchestrated complex multi-agent state machines, cyclical feedback loops, and fallback routing logic to audit visual reading order compliance.'
+    },
+    'pydanticai': {
+      name: 'PydanticAI',
+      icon: 'fa-solid fa-shield-halved',
+      progress: '80%',
+      type: 'backend-ai',
+      desc: 'Leveraged type-safe structured data schema extraction and built strict validation layers for GenAI outputs, guaranteeing JSON schema conformances.'
+    },
+    'rag pipelines': {
+      name: 'RAG Pipelines',
+      icon: 'fa-solid fa-database',
+      progress: '85%',
+      type: 'backend-ai',
+      desc: 'Engineered production retrieval-augmented generation pipelines, blending vector hybrid search with sparse/dense neural embeddings to prevent hallucination.'
+    },
+    'multi-agent systems': {
+      name: 'Multi-Agent Systems',
+      icon: 'fa-solid fa-network-wired',
+      progress: '85%',
+      type: 'backend-ai',
+      desc: 'Designed hierarchical agent swarms targeting OSINT discovery, SMTP pattern verification, and automated background analysis tasks.'
+    },
+    // Databases & Tools
+    'mongodb': {
+      name: 'MongoDB',
+      icon: 'fa-solid fa-leaf',
+      progress: '80%',
+      type: 'db-tools',
+      desc: 'Configured MongoDB collections, document scaling strategies, indexing pipelines, and transaction validation layers for scraper data stores.'
+    },
+    'mysql': {
+      name: 'MySQL',
+      icon: 'fa-solid fa-database',
+      progress: '75%',
+      type: 'db-tools',
+      desc: 'Wrote optimized relational schemas, index files, complex join queries, and handled multi-level transactional safety controls.'
+    },
+    'pinecone': {
+      name: 'Pinecone',
+      icon: 'fa-solid fa-tree',
+      progress: '80%',
+      type: 'db-tools',
+      desc: 'Provisioned similarity-index namespaces, managed vector dimensions, metadata filtering, and optimized sub-second retrieval queries.'
+    },
+    'faiss': {
+      name: 'FAISS',
+      icon: 'fa-solid fa-magnifying-glass',
+      progress: '80%',
+      type: 'db-tools',
+      desc: 'Implemented local in-memory L2 index structures for quick similarity calculations on smaller, embedded dataset documents.'
+    },
+    'git': {
+      name: 'Git',
+      icon: 'fa-brands fa-git-alt',
+      progress: '85%',
+      type: 'db-tools',
+      desc: 'Managed collaborative workflows, branch conflicts, continuous integration commits, and staging releases across master branch repositories.'
+    },
+    'docker': {
+      name: 'Docker',
+      icon: 'fa-brands fa-docker',
+      progress: '80%',
+      type: 'db-tools',
+      desc: 'Composed multi-stage Dockerfiles, reduced container image size, built microservice orchestration specs, and deployed verified app stacks.'
+    }
+  };
+
+  // Render nodes for active category
+  function renderWheelNodes(category) {
+    // 1. Remove previous nodes
+    const oldNodes = wheelContainer.querySelectorAll('.skill-orbit-node');
+    oldNodes.forEach(node => node.remove());
+
+    // 2. Filter skills matching current category
+    const activeSkillsKeys = Object.keys(skillsData).filter(key => {
+      return category === 'all' || skillsData[key].type === category;
+    });
+
+    const activeSkills = activeSkillsKeys.map(key => skillsData[key]);
+    const nodeCount = activeSkills.length;
+    if (nodeCount === 0) return;
+
+    // 3. Compute trigonometric circular coordinates on client sizes
+    const containerWidth = wheelContainer.clientWidth || 320;
+    const containerHeight = wheelContainer.clientHeight || 320;
+    const radius = containerWidth * 0.36; // Orbit Radius
+
+    const centerX = containerWidth / 2;
+    const centerY = containerHeight / 2;
+    const angleStep = (2 * Math.PI) / nodeCount;
+
+    activeSkills.forEach((skill, idx) => {
+      const nodeEl = document.createElement('div');
+      nodeEl.className = 'skill-orbit-node';
+      nodeEl.innerHTML = `<i class="${skill.icon}"></i>`;
+      nodeEl.title = skill.name;
+
+      // Position math
+      const angle = angleStep * idx - Math.PI / 2; // start at top center
+      const x = centerX + Math.cos(angle) * radius - 29; // 29 is half node width (58/2)
+      const y = centerY + Math.sin(angle) * radius - 29;
+
+      nodeEl.style.left = `${x}px`;
+      nodeEl.style.top = `${y}px`;
+
+      // Hover events
+      nodeEl.addEventListener('mouseenter', () => {
+        // Highlight hub
+        if (hub) hub.classList.add('hub-active');
+        nodeEl.classList.add('active-node');
+        showSkillDetail(skill);
+      });
+
+      nodeEl.addEventListener('mouseleave', () => {
+        if (hub) hub.classList.remove('hub-active');
+        nodeEl.classList.remove('active-node');
+      });
+
+      // Mobile Touch events
+      nodeEl.addEventListener('click', () => {
+        // Clear other active styling nodes
+        wheelContainer.querySelectorAll('.skill-orbit-node').forEach(n => n.classList.remove('active-node'));
+        nodeEl.classList.add('active-node');
+        showSkillDetail(skill);
+      });
+
+      wheelContainer.appendChild(nodeEl);
+    });
+  }
+
+  function showSkillDetail(skill) {
+    if (emptyState) emptyState.classList.add('hidden');
+    if (contentState) {
+      contentState.classList.remove('hidden');
+
+      // Update details content
+      detailIcon.className = 'skill-detail-icon';
+      detailIcon.innerHTML = `<i class="${skill.icon}"></i>`;
+      detailName.textContent = skill.name;
+      detailFill.style.width = skill.progress;
+      detailDesc.textContent = skill.desc;
+    }
+  }
+
+  // Tabs clicking events
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
 
       const category = tab.getAttribute('data-category');
-
-      buds.forEach(bud => {
-        const type = bud.getAttribute('data-type');
-        if (category === 'all' || type === category) {
-          bud.classList.add('show');
-          bud.style.animation = 'none';
-          bud.offsetHeight; // Reflow
-          bud.style.animation = '';
-        } else {
-          bud.classList.remove('show');
-        }
-      });
+      renderWheelNodes(category === 'db-tools' ? 'db-tools' : category);
     });
+  });
+
+  // Render initial ALL or languages category nodes
+  renderWheelNodes('languages');
+
+  // Set languages tab active initially
+  tabs.forEach(t => {
+    if (t.getAttribute('data-category') === 'languages') {
+      t.classList.add('active');
+    } else {
+      t.classList.remove('active');
+    }
   });
 }
 
