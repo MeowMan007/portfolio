@@ -10,6 +10,7 @@ import { SkillsSection } from "../components/SkillsSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
 import { CursorTrail } from "../components/CursorTrail";
+import { NotebookSearchModal } from "../components/NotebookSearchModal";
 
 export default function Home() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -85,6 +86,7 @@ export default function Home() {
         </div>
         
         <CursorTrail />
+        <NotebookSearchModal />
 
         <Navbar />
         

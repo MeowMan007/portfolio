@@ -30,3 +30,32 @@ export const UnderlineDoodle = ({ className = "w-full h-3" }: { className?: stri
     <path d="M5 12 C 50 18, 150 2, 195 12 C 140 16, 60 8, 10 14" />
   </svg>
 );
+
+export const SparklesDoodle = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8" />
+  </svg>
+);
+
+export const ConstellationDoodle = ({ className = "w-10 h-10" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+    <circle cx="20" cy="20" r="4" fill="currentColor" />
+    <circle cx="50" cy="30" r="4" fill="currentColor" />
+    <circle cx="80" cy="20" r="4" fill="currentColor" />
+    <circle cx="35" cy="70" r="4" fill="currentColor" />
+    <circle cx="75" cy="80" r="4" fill="currentColor" />
+    <path d="M20 20 L50 30 L80 20 M50 30 L35 70 L75 80" />
+  </svg>
+);
+
+export const CrownDoodle = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <path d="M2 18h20L19 7l-5 4-2-7-2 7-5-4z" />
+  </svg>
+);
+
+export const LightbulbDoodle = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7z" />
+  </svg>
+);

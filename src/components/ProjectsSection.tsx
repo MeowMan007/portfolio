@@ -3,9 +3,24 @@
 import { useState } from "react";
 import { resumeData } from "../data/resumeData";
 import { motion, AnimatePresence } from "framer-motion";
+import { PlacidusAiPreview } from "./PlacidusAiPreview";
 
 export const ProjectsSection = () => {
   const [selectedProject, setSelectedProject] = useState<typeof resumeData.projects[0] | null>(null);
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const categories = ["All", "Agentic AI", "Vision & ATS", "Full-Stack"];
+
+  const filteredProjects = resumeData.projects.filter((project) => {
+    if (activeCategory === "All") return true;
+    if (activeCategory === "Agentic AI")
+      return project.techStack.includes("LangGraph") || project.techStack.includes("PydanticAI") || project.title.includes("Placidus");
+    if (activeCategory === "Vision & ATS")
+      return project.techStack.includes("ViT") || project.techStack.includes("LangChain");
+    if (activeCategory === "Full-Stack")
+      return project.techStack.includes("React") || project.techStack.includes("FastAPI");
+    return true;
+  });
 
   const stickyColors = [
     { 
@@ -37,65 +52,85 @@ export const ProjectsSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="flex flex-col items-center mb-16 relative z-10 text-center"
+        className="flex flex-col items-center mb-12 relative z-10 text-center"
       >
         <h2 className="font-serif font-medium italic text-5xl md:text-7xl mb-4 text-ink-dark dark:text-ink-light">
           Featured Projects.
         </h2>
-        <p className="font-sketch text-2xl text-slate-500 dark:text-slate-400">Agentic AI & Full-Stack Systems</p>
+        <p className="font-sketch text-2xl text-slate-500 dark:text-slate-400 mb-8">Agentic AI & Full-Stack Systems</p>
+
+        {/* Interactive Category Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-2 font-sketch text-lg">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-5 py-2 rounded-full border transition-all cursor-pointer ${
+                activeCategory === cat
+                  ? "bg-ink-dark text-white dark:bg-ink-light dark:text-black border-transparent shadow-md scale-105"
+                  : "bg-white/50 dark:bg-white/5 border-black/10 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:bg-black/5 dark:hover:bg-white/10"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </motion.div>
 
       {/* Grid of Colorful Premium Sticky Notes */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 relative z-10">
-        {resumeData.projects.map((project, i) => {
-          const rotations = ["rotate-[-1.5deg]", "rotate-[1deg]", "rotate-[-1deg]", "rotate-[1.5deg]"];
-          const rotClass = rotations[i % rotations.length];
-          const colorClass = stickyColors[i % stickyColors.length];
-          
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9, y: 40 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: i * 0.1, ease: "easeOut" }}
-              onClick={() => setSelectedProject(project)}
-              className={`premium-sticky cursor-pointer ${rotClass} ${colorClass.border} bg-gradient-to-br ${colorClass.bg} hover:scale-[1.02] hover:z-30 hover:shadow-2xl transition-all duration-300 z-20 group`}
-            >
-              {/* Washi Tape */}
-              <div className={`masking-tape ${colorClass.tape}`}></div>
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project, i) => {
+            const rotations = ["rotate-[-1.5deg]", "rotate-[1deg]", "rotate-[-1deg]", "rotate-[1.5deg]"];
+            const rotClass = rotations[i % rotations.length];
+            const colorClass = stickyColors[i % stickyColors.length];
+            
+            return (
+              <motion.div
+                key={project.title}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
+                onClick={() => setSelectedProject(project)}
+                className={`premium-sticky cursor-pointer ${rotClass} ${colorClass.border} bg-gradient-to-br ${colorClass.bg} hover:scale-[1.02] hover:z-30 hover:shadow-2xl transition-all duration-300 z-20 group`}
+              >
+                {/* Washi Tape */}
+                <div className={`masking-tape ${colorClass.tape}`}></div>
 
-              <div className="font-sans font-black text-2xl md:text-3xl mb-1 tracking-tight mt-2 text-ink-dark dark:text-ink-light">
-                {project.title}
-              </div>
-              <div className="font-sketch text-xl text-slate-600 dark:text-slate-300 mb-4 border-b border-black/10 dark:border-white/10 pb-2">
-                {project.subtitle}
-              </div>
-              
-              <div className="font-sans text-sm leading-relaxed mb-6 font-medium text-slate-700 dark:text-slate-200 h-28 overflow-hidden relative">
-                {project.description}
-                <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/80 dark:from-[#222225]/90 to-transparent"></div>
-              </div>
+                <div className="font-sans font-black text-2xl md:text-3xl mb-1 tracking-tight mt-2 text-ink-dark dark:text-ink-light">
+                  {project.title}
+                </div>
+                <div className="font-sketch text-xl text-slate-600 dark:text-slate-300 mb-4 border-b border-black/10 dark:border-white/10 pb-2">
+                  {project.subtitle}
+                </div>
+                
+                <div className="font-sans text-sm leading-relaxed mb-6 font-medium text-slate-700 dark:text-slate-200 h-28 overflow-hidden relative">
+                  {project.description}
+                  <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white/80 dark:from-[#222225]/90 to-transparent"></div>
+                </div>
 
-              <div className="flex flex-wrap gap-2 mb-8 pointer-events-none">
-                {project.techStack.map((tech, j) => (
-                  <span 
-                    key={j} 
-                    className="text-xs font-bold px-2.5 py-1 bg-black/10 dark:bg-black/40 rounded-md text-ink-dark dark:text-ink-light"
-                  >
-                    {tech}
+                <div className="flex flex-wrap gap-2 mb-8 pointer-events-none">
+                  {project.techStack.map((tech, j) => (
+                    <span 
+                      key={j} 
+                      className="text-xs font-bold px-2.5 py-1 bg-black/10 dark:bg-black/40 rounded-md text-ink-dark dark:text-ink-light"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="absolute bottom-4 right-6">
+                  <span className="font-sketch text-xl text-ink-dark dark:text-ink-light hover:text-black dark:hover:text-white transition-colors uppercase tracking-wider group-hover:underline decoration-wavy">
+                    View Details ↗
                   </span>
-                ))}
-              </div>
-
-              <div className="absolute bottom-4 right-6">
-                <span className="font-sketch text-xl text-ink-dark dark:text-ink-light hover:text-black dark:hover:text-white transition-colors uppercase tracking-wider group-hover:underline decoration-wavy">
-                  View Details ↗
-                </span>
-              </div>
-            </motion.div>
-          );
-        })}
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
       </div>
 
       {/* Deep Dive Modal */}
@@ -114,7 +149,7 @@ export const ProjectsSection = () => {
               exit={{ scale: 0.9, y: 50, rotate: 1 }}
               transition={{ type: "spring", bounce: 0.3 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-2xl bg-notebook-light dark:bg-notebook-dark p-8 md:p-12 shadow-2xl border border-black/15 dark:border-white/15 max-h-[90vh] overflow-y-auto rounded-2xl"
+              className="relative w-full max-w-3xl bg-notebook-light dark:bg-notebook-dark p-8 md:p-12 shadow-2xl border border-black/15 dark:border-white/15 max-h-[90vh] overflow-y-auto rounded-2xl custom-scrollbar"
             >
               {/* Close Button */}
               <button 
@@ -131,12 +166,15 @@ export const ProjectsSection = () => {
                 {selectedProject.subtitle}
               </p>
 
-              <div className="font-sans text-base leading-relaxed text-slate-700 dark:text-slate-300 space-y-4 mb-8 whitespace-pre-line">
+              <div className="font-sans text-base leading-relaxed text-slate-700 dark:text-slate-300 space-y-4 mb-6 whitespace-pre-line">
                 {selectedProject.description}
               </div>
 
-              <div className="mb-8">
-                <h4 className="font-sketch text-2xl mb-3 text-ink-dark dark:text-ink-light">Tech Stack</h4>
+              {/* Special Interactive Sandbox preview for Placidus AI */}
+              {selectedProject.title.includes("Placidus") && <PlacidusAiPreview />}
+
+              <div className="my-8">
+                <h4 className="font-sketch text-2xl mb-3 text-ink-dark dark:text-ink-light">Tech Stack & Infrastructure</h4>
                 <div className="flex flex-wrap gap-2">
                   {selectedProject.techStack.map((tech, j) => (
                     <span 
